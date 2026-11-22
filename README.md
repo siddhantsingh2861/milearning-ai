@@ -22,7 +22,7 @@ A clickable mobile mockup of **MiLearning.AI**, an AI learning agent built as a 
 | Home tile | Today's picks, progress on the HR-assigned goal, a "pick up where you left off" row, time-based filters, and an ask bar with a mic |
 | Chat | Topic → level → recommendations. Quick-reply chips, voice input, and a tabbed recommendation card |
 | Leave-and-return sheet | Shows cost, certificate and language before sending the user to an external platform. Asks how far they got when they come back |
-| My Learning | Assigned, Saved and History in one place, with a status and one action per item |
+| My Learning | Assigned, Saved and History in one place. Saved and History are grouped by learning need |
 
 ## Design decisions
 

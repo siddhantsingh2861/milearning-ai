@@ -18,7 +18,7 @@ body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 /* ---------- Case-study page layout ---------- */
 .cs{max-width:760px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;align-items:center}
 .cs-top{text-align:center;margin-bottom:22px}
-.cs-phone{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cs-phone{display:flex;flex-direction:column;align-items:center;gap:10px;padding-bottom:16px}
 .cs-more{width:100%;margin-top:28px;background:#fff;border-radius:18px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
 .cs-more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-radius:18px}
 .cs-more summary::-webkit-details-marker{display:none}
@@ -88,16 +88,30 @@ body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .cs-foot{margin-top:22px;font-size:13px;color:var(--muted);text-align:center}
 .cs a{color:var(--blue);font-weight:500}
 @media (max-width:600px){ .cs{padding:28px 14px 40px} .cs h1{font-size:30px} .cs-body{padding:4px 16px 22px} .cs-more summary{padding:16px} }
-@media (max-width:440px){ .phone{zoom:.86} }
+@media (max-width:460px){ .device{zoom:.84} }
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 input{font-family:inherit}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .noscroll{scrollbar-width:none}.noscroll::-webkit-scrollbar{display:none}
 
-.phone{width:390px;height:844px;background:var(--bg);border-radius:44px;position:relative;overflow:hidden;
-       box-shadow:0 0 0 10px #111,0 0 0 12px #333,0 30px 60px rgba(0,0,0,.35);flex-shrink:0}
-.status{height:40px;display:flex;justify-content:space-between;align-items:center;padding:0 26px;font-size:13px;font-weight:600}
-.screen{position:absolute;inset:40px 0 0 0;display:flex;flex-direction:column;overflow:hidden}
+.device{position:relative;flex-shrink:0;padding:13px;border-radius:62px;
+  background:linear-gradient(145deg,#5a5d65 0%,#24262b 14%,#34373d 48%,#1b1c20 84%,#4b4e55 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),inset 0 0 0 2.5px #0c0d0f,inset 0 1px 6px rgba(255,255,255,.12),
+    0 1px 2px rgba(15,23,42,.30),0 6px 12px -2px rgba(15,23,42,.22),0 24px 48px -10px rgba(15,23,42,.32),0 60px 110px -24px rgba(15,23,42,.42)}
+.device::after{content:"";position:absolute;left:14%;right:14%;bottom:-26px;height:46px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(15,23,42,.38),rgba(15,23,42,0) 70%);filter:blur(12px);z-index:-1}
+.device .hw{position:absolute;width:5px;border-radius:3px;background:linear-gradient(90deg,#1d1f23,#5d6068 45%,#2a2c31);
+  box-shadow:0 1px 2px rgba(0,0,0,.35)}
+.device .hw.l{left:-4px}.device .hw.r{right:-4px}
+.hw.action{top:150px;height:34px}.hw.volup{top:212px;height:62px}.hw.voldn{top:288px;height:62px}.hw.power{top:236px;height:100px}
+.phone{width:390px;height:844px;background:var(--bg);border-radius:49px;position:relative;overflow:hidden;
+       box-shadow:0 0 0 9px #050506;flex-shrink:0}
+.status{height:52px;display:flex;justify-content:space-between;align-items:center;padding:4px 30px 0 36px;font-size:15px;font-weight:600;position:relative}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:122px;height:35px;border-radius:20px;background:#000}
+.island::after{content:"";position:absolute;right:13px;top:50%;width:11px;height:11px;margin-top:-5.5px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#3b4a6b,#0d1220 60%)}
+.sicons{display:flex;align-items:center;gap:6px}
+.screen{position:absolute;inset:52px 0 0 0;display:flex;flex-direction:column;overflow:hidden}
 .view{position:absolute;inset:0;display:flex;flex-direction:column}
 .hidden{display:none!important}
 
@@ -262,6 +276,21 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 .p-opened,.p-half{background:var(--blue-soft);color:var(--blue)}
 .p-done{background:var(--green-soft);color:var(--green)}
 .sub{font-size:11.5px;color:var(--muted)}
+.ng-tools{display:flex;justify-content:flex-end;gap:14px;margin:-2px 2px -4px}
+.ng-tools button{font-size:12px;font-weight:600;color:var(--blue);min-height:32px}
+.ng{background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;flex-shrink:0}
+.ng-h{width:100%;display:flex;align-items:center;gap:10px;padding:12px;text-align:left;min-height:56px}
+.ng-ic{width:32px;height:32px;border-radius:9px;background:var(--blue-soft);display:grid;place-items:center;flex-shrink:0}
+.ng-ic.hr{background:var(--blue)}
+.ng-tt{flex:1;min-width:0}
+.ng-tt .nm{display:block;font-size:14px;font-weight:600;line-height:1.25}
+.ng-tt .sb{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+.ng .cnt{font-size:11.5px;font-weight:600;color:var(--blue);background:var(--blue-soft);border-radius:10px;padding:2px 9px}
+.ng .chev{transition:transform .2s;flex-shrink:0}
+.ng.closed .chev{transform:rotate(-90deg)}
+.ng-b{display:flex;flex-direction:column;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.ng.closed .ng-b{display:none}
+.ng-b .lrow{border:1px solid var(--line)}
 .empty{text-align:center;color:var(--muted);font-size:13px;padding:40px 20px}
 
 /* Sheet + toast */
@@ -311,8 +340,15 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
   <div class="cs-phone">
     <button class="cs-pushbtn" data-act="hrPush"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Simulate an HR push</button>
     <div class="cs-hint">Interactive. Click anything on the phone.</div>
+<div class="device">
+  <span class="hw l action"></span><span class="hw l volup"></span><span class="hw l voldn"></span><span class="hw r power"></span>
 <div class="phone">
-  <div class="status"><span id="clock">09:12</span><span>●●●● 57%</span></div>
+  <div class="status"><span id="clock">09:12</span><span class="island" aria-hidden="true"></span>
+    <span class="sicons" aria-hidden="true">
+      <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="#111"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="#111"/><rect x="10" y="3" width="3" height="9" rx="1" fill="#111"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#111"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0z" fill="#111"/><path d="M3.4 6.8a6.5 6.5 0 0 1 9.2 0l-1.5 1.5a4.4 4.4 0 0 0-6.2 0z" fill="#111"/><path d="M1.1 4.5a9.8 9.8 0 0 1 13.8 0l-1.5 1.5a7.7 7.7 0 0 0-10.8 0z" fill="#111"/></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#111" opacity=".4"/><rect x="2" y="2" width="14" height="9" rx="2" fill="#111"/><path d="M25 4.5v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="#111" opacity=".45"/></svg>
+    </span></div>
   <div class="screen">
 
     <!-- HOME -->
@@ -370,6 +406,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
     <div class="toast" id="toast" role="status"></div>
   </div>
 </div>
+</div><!-- /device -->
   </div>
 
   <details class="cs-more">
@@ -432,7 +469,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
       <li><b>Visible progress against the HR goal.</b> Formal, appraisal-linked targets drive action. The tile shows "1/4 done · due 31 Mar".</li>
       <li><b>Gentler level question.</b> "Just starting / I know the basics / I'm quite confident / Not sure, you decide" replaces Beginner/Expert. People tend to undersell themselves on those labels. If HR already set the level, the question is skipped.</li>
       <li><b>Completion check-in.</b> External platforms don't report completion back. A one-tap "Finished / Halfway / Not started" on return gives HR completion data, not just clicks.</li>
-      <li><b>One hub.</b> Saved, History and Assigned sit under a single labelled "My Learning" button.</li>
+      <li><b>One hub, grouped by need.</b> Saved, History and Assigned sit under a single "My Learning" button. Saved and History are grouped by learning need, matching how people think: "the Excel stuff", "the team management stuff".</li>
       <li><b>Bigger tap targets and text</b> for budget Android phones with large font settings.</li>
     </ul>
 
@@ -441,7 +478,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
       <div class="cs-screen"><b>Home tile</b><span>Today's picks, HR goal progress, "pick up where you left off", time filters, ask bar with mic.</span></div>
       <div class="cs-screen"><b>Chat</b><span>Topic, then level, then a tabbed recommendation card. Quick-reply chips and voice input.</span></div>
       <div class="cs-screen"><b>Leave and return</b><span>Shows cost, certificate and language before sending users out. Asks how far they got when they're back.</span></div>
-      <div class="cs-screen"><b>My Learning</b><span>Assigned, Saved and History, with one status and one action per item.</span></div>
+      <div class="cs-screen"><b>My Learning</b><span>Assigned, Saved and History. Saved and History are grouped by learning need, so content is easy to find again.</span></div>
     </div>
 
     <h2>What's mocked</h2>
@@ -506,10 +543,17 @@ const S = {
   stage:'greet', topic:'', said:'', lvl:'', lvlSaid:'', lvlGuess:false, fromPlan:false, loadStep:0,
   tab:'Courses', idx:0, fb:null, chatNote:'', listening:false,
   sheet:null, lt:'assigned',
-  saved:{s1:true}, items:{}, status:{a1:'half',a4:'done'}, hist:['a1','a4'],
-  when:{a1:'Yesterday, 8:42 pm',a4:'Mon, 9:15 am'}
+  saved:{s1:true,x2:true,k1:true}, items:{}, status:{a1:'half',a4:'done',x1:'done',k1:'opened'}, hist:['a1','x1','k1','a4'],
+  when:{a1:'Yesterday, 8:42 pm',x1:'Sat, 7:55 pm',k1:'Fri, 6:10 pm',a4:'Mon, 9:15 am'},
+  closed:{saved:new Set(),history:new Set()}
 };
 PICKS.forEach(p=>S.items[p.id]=p);
+/* Earlier activity on other learning needs, so Saved and History show grouping */
+[
+  {id:'x1',type:'Video',platform:'YouTube',title:'Pivot Tables in 15 Minutes',prov:'Sample Channel',dur:'15 min',mins:15,cost:'Free',need:'Excel for Reports',lvl:'Beginner'},
+  {id:'x2',type:'Article',platform:'Web',title:'10 Excel Shortcuts for Faster Reporting',prov:'example.com',dur:'6 min read',mins:6,cost:'Free',need:'Excel for Reports',lvl:'Beginner'},
+  {id:'k1',type:'Course',platform:'Coursera',title:'Stakeholder Communication Essentials',prov:'Sample University',dur:'3 weeks',mins:500,cost:'Free to audit',cert:true,need:'Stakeholder Communication',lvl:'Intermediate'}
+].forEach(p=>S.items[p.id]=p);
 let timers=[];
 const later=(fn,ms)=>{const t=setTimeout(fn,ms);timers.push(t);return t;};
 const clearTimers=()=>{timers.forEach(clearTimeout);timers=[];};
@@ -707,6 +751,28 @@ function lrow(d,meta,action=true,extra=''){
   return `<div class="lrow">${mini(d,48,24)}<div class="info"><div class="ttl2">${esc(d.title)}</div>${meta}</div>
     ${action?`<button class="btn-soft" data-act="open" data-id="${d.id}">${d.action}</button>`:''}${extra}</div>`;
 }
+const TGT=c=>`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="${c}"/></svg>`;
+const CHEV='<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function byNeed(ds){
+  const m=new Map();
+  ds.forEach(d=>{const k=d.need||'Other';if(!m.has(k))m.set(k,[]);m.get(k).push(d);});
+  return [...m.keys()].sort((a,b)=>(b===NEED)-(a===NEED)).map(k=>({need:k,items:m.get(k)}));
+}
+function groupsHTML(tab,groups,row){
+  const tools=groups.length>1?`<div class="ng-tools"><button data-act="expAll" data-v="${tab}">Expand all</button><button data-act="colAll" data-v="${tab}">Collapse all</button></div>`:'';
+  return tools+groups.map(g=>{
+    const closed=S.closed[tab].has(g.need), hr=g.need===NEED;
+    const lvl=g.items[0].lvl||(hr?'Intermediate':'');
+    const sub=[lvl,hr?'Assigned by HR':'Your request'].filter(Boolean).join(' · ');
+    return `<div class="ng ${closed?'closed':''}">
+      <button class="ng-h" data-act="tog" data-v="${tab}" data-id="${esc(g.need)}" aria-expanded="${!closed}">
+        <span class="ng-ic ${hr?'hr':''}">${TGT(hr?'#fff':'#0B57B7')}</span>
+        <span class="ng-tt"><span class="nm">${esc(g.need)}</span><span class="sb">${sub}</span></span>
+        <span class="cnt">${g.items.length}</span>${CHEV}
+      </button>
+      <div class="ng-b">${g.items.map(row).join('')}</div></div>`;
+  }).join('');
+}
 function renderLearn(){
   const savedIds=Object.keys(S.saved).filter(id=>S.items[id]);
   const vals=Object.values(S.status);
@@ -725,10 +791,10 @@ function renderLearn(){
       ${PICKS.filter(p=>p.assigned).map(deco).map(d=>lrow(d,`<div class="acts" style="gap:6px;flex-wrap:wrap"><span class="pill p-${d.st}">${d.stLabel}</span><span class="sub">${esc(d.src)} · ${esc(d.dur)}</span></div>`)).join('')}
     </div>`;
   } else if(S.lt==='saved'){
-    body=savedIds.length?savedIds.map(id=>deco(S.items[id])).map(d=>lrow(d,`<div class="sub">${d.type} · ${esc(d.dur)} · for ${esc(d.need)}</div>`,true,saveBtn(d))).join('')
+    body=savedIds.length?groupsHTML('saved',byNeed(savedIds.map(id=>deco(S.items[id]))),d=>lrow(d,`<div class="sub">${d.type} · ${esc(d.src)} · ${esc(d.dur)}</div>`,true,saveBtn(d)))
       :'<div class="empty">Nothing saved yet. Tap the bookmark on any pick to keep it here.</div>';
   } else {
-    body=S.hist.length?S.hist.filter(id=>S.items[id]).map(id=>deco(S.items[id])).map(d=>lrow(d,`<div class="acts" style="gap:6px;flex-wrap:wrap"><span class="pill p-${d.st}">${d.stLabel}</span><span class="sub">${esc(d.when)}</span></div>`)).join('')
+    body=S.hist.length?groupsHTML('history',byNeed(S.hist.filter(id=>S.items[id]).map(id=>deco(S.items[id]))),d=>lrow(d,`<div class="acts" style="gap:6px;flex-wrap:wrap"><span class="pill p-${d.st}">${d.stLabel}</span><span class="sub">${esc(d.when)}</span></div>`))
       :'<div class="empty">Courses, videos and articles you open will show up here.</div>';
   }
   $('learnBody').innerHTML=`
@@ -837,6 +903,9 @@ const ACT={
   stopMic:()=>{clearTimeout(micT);S.listening=false;renderComposer();},
   send:()=>send(),
   tab:v=>{S.lt=v;renderLearn();},
+  tog:(tab,need)=>{const c=S.closed[tab];c.has(need)?c.delete(need):c.add(need);renderLearn();},
+  expAll:tab=>{S.closed[tab].clear();renderLearn();},
+  colAll:tab=>{const ids=tab==='saved'?Object.keys(S.saved):S.hist;ids.forEach(id=>S.items[id]&&S.closed[tab].add(S.items[id].need||'Other'));renderLearn();},
   closeSheet:()=>{S.sheet=null;renderSheet();},
   toCheckin:()=>{S.sheet.step='checkin';renderSheet();},
   saveInstead:()=>{const id=S.sheet.id;S.sheet=null;toggleSave(id);},
