@@ -45,4 +45,4 @@ The underlying agent runs in Microsoft Teams. It captures the learning need in c
 
 ## Tech
 
-Single HTML file. Vanilla JavaScript, CSS, inline SVG icons, Poppins from Google Fonts.
+Single HTML file. JavaScript, CSS, inline SVG icons, Poppins from Google Fonts.
