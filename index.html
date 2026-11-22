@@ -16,19 +16,29 @@
 body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#E6ECF4;color:var(--ink);min-height:100vh}
 
 /* ---------- Case-study page layout ---------- */
-.cs{max-width:1180px;margin:0 auto;padding:56px 32px 64px;display:grid;grid-template-columns:minmax(0,1fr) 414px;
-    grid-template-areas:"intro phone" "details phone";column-gap:64px;align-items:start}
-.cs-intro{grid-area:intro}
-.cs-details{grid-area:details}
-.cs-phone{grid-area:phone;position:sticky;top:20px;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:0}
+.cs{max-width:760px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;align-items:center}
+.cs-top{text-align:center;margin-bottom:22px}
+.cs-phone{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cs-more{width:100%;margin-top:28px;background:#fff;border-radius:18px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
+.cs-more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-radius:18px}
+.cs-more summary::-webkit-details-marker{display:none}
+.cs-more summary:hover{background:#F7FAFE}
+.cs-more summary b{display:block;font-size:16px}
+.cs-more .sub2{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.cs-more .chev{flex-shrink:0;transition:transform .2s}
+.cs-more[open] .chev{transform:rotate(180deg)}
+.cs-more[open] summary{border-bottom:1px solid #E5EAF1;border-radius:18px 18px 0 0}
+.cs-body{padding:6px 22px 26px}
+.cs-body > h2:first-of-type{margin-top:30px}
+.cs-lead2{font-size:15.5px;line-height:1.6;color:#374151;margin-top:16px}
 .cs-hint{font-size:12.5px;color:var(--muted);text-align:center;margin-bottom:14px}
 .cs-eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
-.cs h1{font-size:44px;line-height:1.1;font-weight:700;margin:10px 0 14px;letter-spacing:-.01em}
-.cs-lead{font-size:17px;line-height:1.6;color:#374151;max-width:600px}
+.cs h1{font-size:36px;line-height:1.1;font-weight:700;margin:6px 0 8px;letter-spacing:-.01em}
+.cs-lead{font-size:15.5px;line-height:1.55;color:#374151;max-width:520px;margin:0 auto}
 .cs-tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
 .cs-tags span{font-size:12.5px;font-weight:500;padding:5px 12px;border-radius:20px;background:#fff;border:1px solid #D5DEEA;color:#374151}
-.cs-intro h2,.cs-details h2{font-size:20px;font-weight:700;margin:44px 0 14px}
-.cs-intro p,.cs-details p{font-size:15px;line-height:1.65;color:#374151;max-width:640px}
+.cs-body h2{font-size:20px;font-weight:700;margin:44px 0 14px}
+.cs-body p{font-size:15px;line-height:1.65;color:#374151;max-width:640px}
 .cs-try{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px;max-width:640px}
 .cs-try li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.55;color:#374151;box-shadow:0 1px 2px rgba(16,24,40,.05)}
 .cs-try li::before{content:counter(s);flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:600;display:grid;place-items:center;margin-top:1px}
@@ -75,13 +85,9 @@ body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .tm .cta span{font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:6px;border:1px solid #C9CED8;color:#374151}
 .tm .cta span.p{background:#4F52B2;border-color:#4F52B2;color:#fff}
 @media (max-width:640px){.cs-uses,.cs-mocks{grid-template-columns:minmax(0,1fr)}.cs-arrow{display:none}}
-.cs-foot{margin-top:48px;padding-top:20px;border-top:1px solid #D5DEEA;font-size:13.5px;color:var(--muted);max-width:640px}
+.cs-foot{margin-top:22px;font-size:13px;color:var(--muted);text-align:center}
 .cs a{color:var(--blue);font-weight:500}
-@media (max-width:1000px){
-  .cs{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "phone" "details";padding:36px 20px 48px}
-  .cs-phone{position:static;padding:36px 0 8px}
-  .cs h1{font-size:36px}
-}
+@media (max-width:600px){ .cs{padding:28px 14px 40px} .cs h1{font-size:30px} .cs-body{padding:4px 16px 22px} .cs-more summary{padding:16px} }
 @media (max-width:440px){ .phone{zoom:.86} }
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 input{font-family:inherit}
@@ -296,25 +302,11 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 <body>
 
 <main class="cs">
-  <section class="cs-intro">
+  <header class="cs-top">
     <div class="cs-eyebrow">UI mockup · Employee app module</div>
     <h1>MiLearning.AI</h1>
-    <p class="cs-lead">Personalised learning for every employee, without building more generic LMS content. MiLearning.AI finds relevant courses, videos and articles from the open web, free wherever possible, for any learning need an employee has.</p>
-    <div class="cs-uses">
-      <div class="cs-use"><div class="who">Employee-led</div><b>Ask for anything you want to learn</b><span>Type or speak a need in English, Hindi or Hinglish. Get relevant picks in seconds, right inside the employee app.</span></div>
-      <div class="cs-use hr"><div class="who">HR-led <span class="usp">USP</span></div><b>HR pushes learning for each person's needs</b><span>For needs flagged in an employee's goal sheet or performance conversation, HR pushes curated resources centrally. They arrive as an in-app notification and a Teams message.</span></div>
-    </div>
-    <div class="cs-tags"><span>AI agent</span><span>L&amp;D</span><span>Mobile UX</span><span>Sample data only</span></div>
-
-    <h2>Try it</h2>
-    <ol class="cs-try">
-      <li><span>Click <b>Simulate an HR push</b> above the phone. Tap the notification to see the resources HR assigned.</span></li>
-      <li><span>Tap a time chip like <b>Under 10 min</b> to filter today's picks by the time you have.</span></li>
-      <li><span>Tap the <b>mic</b> next to the ask bar. It fills a Hinglish question. Hit send and pick a level.</span></li>
-      <li><span>Start a new chat and tap <b>Continue: Team Management</b>. It skips the level question because HR already set it.</span></li>
-      <li><span>On the home tile, open a pick marked <b>HR assigned</b>, tap <b>Continue</b>, then choose <b>Finished it</b>. The goal bar moves from 1/4 to 2/4.</span></li>
-    </ol>
-  </section>
+    <p class="cs-lead">An AI learning agent that brings relevant, free-first learning content to every employee. HR can push it too.</p>
+  </header>
 
   <div class="cs-phone">
     <button class="cs-pushbtn" data-act="hrPush"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Simulate an HR push</button>
@@ -380,7 +372,28 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 </div>
   </div>
 
-  <section class="cs-details">
+  <details class="cs-more">
+    <summary>
+      <span><b>About this project</b><span class="sub2">The use case, how the HR push works, and the design decisions</span></span>
+      <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="cs-body">
+    <p class="cs-lead2">Personalised learning for every employee, without building more generic LMS content. MiLearning.AI finds relevant courses, videos and articles from the open web, free wherever possible, for any learning need an employee has.</p>
+    <div class="cs-uses">
+      <div class="cs-use"><div class="who">Employee-led</div><b>Ask for anything you want to learn</b><span>Type or speak a need in English, Hindi or Hinglish. Get relevant picks in seconds, right inside the employee app.</span></div>
+      <div class="cs-use hr"><div class="who">HR-led <span class="usp">USP</span></div><b>HR pushes learning for each person's needs</b><span>For needs flagged in an employee's goal sheet or performance conversation, HR pushes curated resources centrally. They arrive as an in-app notification and a Teams message.</span></div>
+    </div>
+    <div class="cs-tags"><span>AI agent</span><span>L&amp;D</span><span>Mobile UX</span><span>Sample data only</span></div>
+
+    <h2>Try it</h2>
+    <ol class="cs-try">
+      <li><span>Click <b>Simulate an HR push</b> above the phone. Tap the notification to see the resources HR assigned.</span></li>
+      <li><span>Tap a time chip like <b>Under 10 min</b> to filter today's picks by the time you have.</span></li>
+      <li><span>Tap the <b>mic</b> next to the ask bar. It fills a Hinglish question. Hit send and pick a level.</span></li>
+      <li><span>Start a new chat and tap <b>Continue: Team Management</b>. It skips the level question because HR already set it.</span></li>
+      <li><span>On the home tile, open a pick marked <b>HR assigned</b>, tap <b>Continue</b>, then choose <b>Finished it</b>. The goal bar moves from 1/4 to 2/4.</span></li>
+    </ol>
+
     <h2>The problem</h2>
     <p>L&amp;D spends heavily on creating content for the central LMS, in-house or through external vendors. Most of it is generic, so it rarely fits what a given employee actually needs. Recommendations reach people as links they don't open, nobody knows what was finished, and individual learning plans stay fragmented. Keeping them on track needs repeated HRBP or L&amp;D follow-up.</p>
 
@@ -441,9 +454,10 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 
     <h2>How it connects to the agent</h2>
     <p>The underlying agent runs in Microsoft Teams. It captures the learning need in chat, and a Power Automate flow posts the recommendations back as an Adaptive Card. This mockup explores the same experience as a native module inside the employee app.</p>
+    </div>
+  </details>
 
-    <div class="cs-foot">Designed and built by Siddhant Singh · Single HTML file · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></div>
-  </section>
+  <div class="cs-foot">Designed and built by Siddhant Singh · Single HTML file · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></div>
 </main>
 
 
