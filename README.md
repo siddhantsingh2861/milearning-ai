@@ -4,7 +4,7 @@ A clickable mobile mockup of **MiLearning.AI**, an AI learning assistant built a
 
 Employees tell it what they want to learn, by typing or speaking. It returns courses, videos and articles from Coursera, Udemy, YouTube, Microsoft Learn and the web. It also tracks the learning goals HR assigns.
 
-**Open it:** download `index.html` and open it in any browser. No build step, no dependencies.
+**Live demo:** https://siddhantsingh2861.github.io/milearning-ai/ (or download `index.html` and open it in any browser; no build step, no dependencies).
 
 > This repo is a **sanitized design mockup**. The organization name is removed and all content is sample data. Nothing here connects to a real system.
 

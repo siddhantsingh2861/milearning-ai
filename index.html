@@ -13,8 +13,41 @@
   --purple:#6B21A8; --purple-soft:#F3E8FF; --radius:22px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#D9E1EC;color:var(--ink);
-     min-height:100vh;display:flex;justify-content:center;align-items:center;padding:32px 16px}
+body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#E6ECF4;color:var(--ink);min-height:100vh}
+
+/* ---------- Case-study page layout ---------- */
+.cs{max-width:1180px;margin:0 auto;padding:56px 32px 64px;display:grid;grid-template-columns:minmax(0,1fr) 414px;
+    grid-template-areas:"intro phone" "details phone";column-gap:64px;align-items:start}
+.cs-intro{grid-area:intro}
+.cs-details{grid-area:details}
+.cs-phone{grid-area:phone;position:sticky;top:32px;display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:12px}
+.cs-hint{font-size:12.5px;color:var(--muted);text-align:center}
+.cs-eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+.cs h1{font-size:44px;line-height:1.1;font-weight:700;margin:10px 0 14px;letter-spacing:-.01em}
+.cs-lead{font-size:17px;line-height:1.6;color:#374151;max-width:600px}
+.cs-tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.cs-tags span{font-size:12.5px;font-weight:500;padding:5px 12px;border-radius:20px;background:#fff;border:1px solid #D5DEEA;color:#374151}
+.cs-intro h2,.cs-details h2{font-size:20px;font-weight:700;margin:44px 0 14px}
+.cs-intro p,.cs-details p{font-size:15px;line-height:1.65;color:#374151;max-width:640px}
+.cs-try{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px;max-width:640px}
+.cs-try li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.55;color:#374151;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.cs-try li::before{content:counter(s);flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:600;display:grid;place-items:center;margin-top:1px}
+.cs-try b,.cs-list b{color:var(--ink);font-weight:600}
+.cs-list{list-style:none;display:flex;flex-direction:column;gap:14px;max-width:640px}
+.cs-list li{font-size:14.5px;line-height:1.6;color:#374151;padding-left:18px;position:relative}
+.cs-list li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;border-radius:2px;background:var(--blue)}
+.cs-screens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:640px}
+.cs-screen{background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.cs-screen b{display:block;font-size:14.5px;margin-bottom:4px}
+.cs-screen span{font-size:13.5px;line-height:1.55;color:#4B5563}
+.cs-foot{margin-top:48px;padding-top:20px;border-top:1px solid #D5DEEA;font-size:13.5px;color:var(--muted);max-width:640px}
+.cs a{color:var(--blue);font-weight:500}
+@media (max-width:1000px){
+  .cs{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "phone" "details";padding:36px 20px 48px}
+  .cs-phone{position:static;padding:36px 0 8px}
+  .cs h1{font-size:36px}
+}
+@media (max-width:440px){ .phone{zoom:.86} }
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 input{font-family:inherit}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -42,7 +75,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 .nav{height:74px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;flex-shrink:0}
 .nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;color:#4B5563;min-width:64px;min-height:52px}
 .nav button.act{color:var(--blue)}
-.midas{width:32px;height:32px;border-radius:50%;background:#C2185B;display:grid;place-items:center}
+.ai-tab{width:32px;height:32px;border-radius:50%;background:#C2185B;display:grid;place-items:center}
 
 /* Tile */
 .tile{background:#fff;border-radius:var(--radius);box-shadow:0 2px 6px rgba(16,24,40,.08);padding:16px 0 14px;overflow:hidden}
@@ -102,13 +135,15 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 
 /* Chat */
 .chat{background:#F5F8FC}
-.hdr{background:#fff;display:flex;align-items:center;gap:8px;padding:8px 10px 8px 6px;border-bottom:1px solid var(--line)}
+.hdr{background:#fff;display:flex;align-items:center;gap:6px;padding:8px 10px 8px 6px;border-bottom:1px solid var(--line)}
 .hbtn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;flex-shrink:0}
 .hbtn:hover{background:#F1F4F8}
-.hdr .logo{width:36px;height:36px;border-radius:11px}
-.hdr .t{font-weight:600;font-size:15px;line-height:1.2}
-.hdr .s{font-size:11.5px;color:var(--green)}
-.mylearn{position:relative;height:40px;padding:0 12px;border-radius:20px;border:1px solid var(--blue-line);background:var(--blue-soft);color:var(--blue);font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px;margin-left:auto}
+.hdr .logo{width:32px;height:32px;border-radius:10px}
+.hdr .t{font-weight:600;font-size:14px;line-height:1.2}
+.hdr .s{font-size:11.5px;color:var(--green);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr .tt{flex:1;min-width:0}
+.hdr .tt .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mylearn{position:relative;height:40px;padding:0 12px;border-radius:20px;border:1px solid var(--blue-line);background:var(--blue-soft);color:var(--blue);font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;margin-left:auto;white-space:nowrap;flex-shrink:0;padding:0 10px}
 .badge{position:absolute;top:-5px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--pink);color:#fff;font-size:10.5px;font-weight:600;display:grid;place-items:center;padding:0 4px}
 .msgs{flex:1;min-height:0;overflow-y:auto;padding:14px 12px 12px;display:flex;flex-direction:column;gap:10px;position:relative}
 .bubble{max-width:86%;padding:11px 14px;border-radius:18px;font-size:14px;line-height:1.5;animation:pop .25s ease}
@@ -217,6 +252,24 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 </head>
 <body>
 
+<main class="cs">
+  <section class="cs-intro">
+    <div class="cs-eyebrow">UI mockup · Employee app module</div>
+    <h1>MiLearning.AI</h1>
+    <p class="cs-lead">An AI learning assistant inside an enterprise employee app. Employees say what they want to learn, by typing or speaking. It finds courses, videos and articles, and tracks the goals HR assigns.</p>
+    <div class="cs-tags"><span>Mobile UX</span><span>Conversational UI</span><span>L&amp;D</span><span>Sample data only</span></div>
+
+    <h2>Try it</h2>
+    <ol class="cs-try">
+      <li><span>Tap a time chip like <b>Under 10 min</b> to filter today's picks by the time you have.</span></li>
+      <li><span>Tap the <b>mic</b> next to the ask bar. It fills a Hinglish question. Hit send and pick a level.</span></li>
+      <li><span>Start a new chat and tap <b>Continue: Team Management</b>. It skips the level question because HR already set it.</span></li>
+      <li><span>On the home tile, open a pick marked <b>HR assigned</b>, tap <b>Continue</b>, then choose <b>Finished it</b>. The goal bar moves from 1/4 to 2/4.</span></li>
+      <li><span>Open <b>My Learning</b> to see Assigned, Saved and History in one place.</span></li>
+    </ol>
+  </section>
+
+  <div class="cs-phone">
 <div class="phone">
   <div class="status"><span id="clock">09:12</span><span>●●●● 57%</span></div>
   <div class="screen">
@@ -236,7 +289,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
       <nav class="nav" aria-label="Main">
         <button class="act" aria-current="page"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" aria-hidden="true"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
         <button data-act="app"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg>Applications</button>
-        <button data-act="app"><span class="midas" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><rect x="5" y="7" width="14" height="11" rx="4"/><circle cx="9.5" cy="12" r="1.5" fill="#C2185B"/><circle cx="14.5" cy="12" r="1.5" fill="#C2185B"/></svg></span>MiDAS</button>
+        <button data-act="app"><span class="ai-tab" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><rect x="5" y="7" width="14" height="11" rx="4"/><circle cx="9.5" cy="12" r="1.5" fill="#C2185B"/><circle cx="14.5" cy="12" r="1.5" fill="#C2185B"/></svg></span>Assistant</button>
         <button data-act="app"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>Favorites</button>
       </nav>
     </div>
@@ -246,7 +299,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
       <div class="hdr">
         <button class="hbtn" data-act="go" data-v="home" aria-label="Back to home"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
         <div class="logo" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
-        <div><div class="t">MiLearning.AI</div><div class="s">Your learning assistant</div></div>
+        <div class="tt"><div class="t">MiLearning.AI</div><div class="s">Learning assistant</div></div>
         <button class="mylearn" data-act="go" data-v="learn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>My Learning
           <span class="badge hidden" id="badge"></span>
@@ -270,6 +323,48 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
     <div class="toast" id="toast" role="status"></div>
   </div>
 </div>
+    <div class="cs-hint">Interactive. Click anything on the phone.</div>
+  </div>
+
+  <section class="cs-details">
+    <h2>The problem</h2>
+    <p>Learning recommendations reach employees as links they rarely open. Nobody knows what was finished. The first version of the module also asked too many questions, hid most results behind tabs, and spread saved items and history across three unlabelled icons.</p>
+
+    <h2>Design decisions</h2>
+    <ul class="cs-list">
+      <li><b>Voice first.</b> Many users would rather send a voice note than type in English. The composer takes Hindi, English or Hinglish.</li>
+      <li><b>Time chips.</b> People learn on the commute or between meetings. They choose by the time they have more than by topic.</li>
+      <li><b>Cost and certificate up front.</b> "Is it free?" and "Do I get a certificate?" decide whether someone taps. Home cards show Free / Paid / Free to audit, Certificate, and a हिंदी badge for Hindi content.</li>
+      <li><b>Visible progress against the HR goal.</b> Formal, appraisal-linked targets drive action. The tile shows "1/4 done · due 31 Mar".</li>
+      <li><b>Gentler level question.</b> "Just starting / I know the basics / I'm quite confident / Not sure, you decide" replaces Beginner/Expert. People tend to undersell themselves on those labels. If HR already set the level, the question is skipped.</li>
+      <li><b>Completion check-in.</b> External platforms don't report completion back. A one-tap "Finished / Halfway / Not started" on return gives HR completion data, not just clicks.</li>
+      <li><b>One hub.</b> Saved, History and Assigned sit under a single labelled "My Learning" button.</li>
+      <li><b>Bigger tap targets and text</b> for budget Android phones with large font settings.</li>
+    </ul>
+
+    <h2>Screens</h2>
+    <div class="cs-screens">
+      <div class="cs-screen"><b>Home tile</b><span>Today's picks, HR goal progress, "pick up where you left off", time filters, ask bar with mic.</span></div>
+      <div class="cs-screen"><b>Chat</b><span>Topic, then level, then a tabbed recommendation card. Quick-reply chips and voice input.</span></div>
+      <div class="cs-screen"><b>Leave and return</b><span>Shows cost, certificate and language before sending users out. Asks how far they got when they're back.</span></div>
+      <div class="cs-screen"><b>My Learning</b><span>Assigned, Saved and History, with one status and one action per item.</span></div>
+    </div>
+
+    <h2>What's mocked</h2>
+    <ul class="cs-list">
+      <li>All courses, ratings, providers and dates are placeholders.</li>
+      <li>Voice input fills a fixed Hinglish sample. A real build needs speech-to-text that supports Hindi (hi-IN).</li>
+      <li>"Continue to [platform]" jumps straight to the check-in. A real build opens the link and shows the check-in when the user returns.</li>
+      <li>Share, Applications and other app tiles only show a toast.</li>
+    </ul>
+
+    <h2>How it connects to the agent</h2>
+    <p>The underlying agent runs in Microsoft Teams. It captures the learning need in chat, and a Power Automate flow posts the recommendations back as an Adaptive Card. This mockup explores the same experience as a native module inside the employee app.</p>
+
+    <div class="cs-foot">Designed and built by Siddhant Singh · Single HTML file · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></div>
+  </section>
+</main>
+
 
 <script>
 /* ---------- Sample data (placeholder only) ---------- */
