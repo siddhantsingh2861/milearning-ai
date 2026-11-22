@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiLearning.AI – Employee App UI Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3F9; --card:#fff; --ink:#111827; --muted:#5B6472; --line:#E5EAF1;
+  --blue:#0B57B7; --blue-soft:#E8F1FC; --blue-line:#BFD4F2; --pink:#D6365A;
+  --green:#0B6B45; --green-soft:#E3F5EC; --amber:#9A4A06; --amber-soft:#FFF4E5;
+  --purple:#6B21A8; --purple-soft:#F3E8FF; --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#D9E1EC;color:var(--ink);
+     min-height:100vh;display:flex;justify-content:center;align-items:center;padding:32px 16px}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input{font-family:inherit}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.noscroll{scrollbar-width:none}.noscroll::-webkit-scrollbar{display:none}
+
+.phone{width:390px;height:844px;background:var(--bg);border-radius:44px;position:relative;overflow:hidden;
+       box-shadow:0 0 0 10px #111,0 0 0 12px #333,0 30px 60px rgba(0,0,0,.35);flex-shrink:0}
+.status{height:40px;display:flex;justify-content:space-between;align-items:center;padding:0 26px;font-size:13px;font-weight:600}
+.screen{position:absolute;inset:40px 0 0 0;display:flex;flex-direction:column;overflow:hidden}
+.view{position:absolute;inset:0;display:flex;flex-direction:column}
+.hidden{display:none!important}
+
+/* Host chrome */
+.topbar{display:flex;align-items:center;gap:12px;padding:8px 18px 12px;border-bottom:1px solid var(--line)}
+.avatar{width:42px;height:42px;border-radius:50%;background:#D5DCE6;display:grid;place-items:center;font-weight:600;color:#374151;flex-shrink:0}
+.search{flex:1;min-width:0;height:44px;border:1px solid #DCE3EC;border-radius:24px;display:flex;align-items:center;gap:8px;padding:0 14px;background:#F4F7FB}
+.search input{flex:1;min-width:0;border:0;background:transparent;font-size:15px;outline:none;color:var(--ink)}
+.moon{width:44px;height:44px;border-radius:50%;background:#1A1A1A;display:grid;place-items:center;flex-shrink:0}
+.scroll{flex:1;min-height:0;overflow-y:auto;padding:16px 16px 20px}
+h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
+.apps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.app{background:#fff;border-radius:var(--radius);padding:10px 10px 16px;box-shadow:0 2px 6px rgba(16,24,40,.08);text-align:center}
+.app .icn{height:96px;border:1px solid #EEF1F5;border-radius:14px;display:grid;place-items:center}
+.app p{margin-top:10px;font-size:14px;font-weight:500}
+.nav{height:74px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;flex-shrink:0}
+.nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;color:#4B5563;min-width:64px;min-height:52px}
+.nav button.act{color:var(--blue)}
+.midas{width:32px;height:32px;border-radius:50%;background:#C2185B;display:grid;place-items:center}
+
+/* Tile */
+.tile{background:#fff;border-radius:var(--radius);box-shadow:0 2px 6px rgba(16,24,40,.08);padding:16px 0 14px;overflow:hidden}
+.tile-head{display:flex;align-items:center;gap:10px;padding:0 16px}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.t-title{font-weight:600;font-size:15px;line-height:1.25}
+.t-sub{font-size:12px;color:var(--muted)}
+.date{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:20px;white-space:nowrap}
+.goal{margin:14px 16px 0;padding:12px;border-radius:14px;background:#F4F8FD;border:1px solid #DCE7F5;display:flex;flex-direction:column;gap:8px}
+.goal-row{display:flex;align-items:center;gap:10px}
+.goal-lbl{font-size:11.5px;color:var(--muted)}
+.goal-name{font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px}
+.lvl{font-size:11px;background:var(--green-soft);color:var(--green);padding:2px 8px;border-radius:10px;font-weight:600}
+.goal-count{font-size:13px;font-weight:600;color:var(--blue);white-space:nowrap;margin-left:auto}
+.bar{height:6px;border-radius:3px;background:#DCE7F5;overflow:hidden}
+.bar i{display:block;height:6px;border-radius:3px;background:var(--blue);transition:width .3s}
+.cont{margin:12px 16px 0;display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;border:1px solid var(--line)}
+.cont .meta{flex:1;min-width:0}
+.cont .ttl{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont .st{font-size:11.5px;color:var(--blue);font-weight:500}
+.label{padding:14px 16px 0;font-size:13px;font-weight:600}
+.chiprow{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 2px}
+.fchip{flex-shrink:0;min-height:40px;padding:0 14px;border-radius:20px;font-size:12.5px;font-weight:500;white-space:nowrap;background:#fff;color:var(--blue);border:1px solid var(--blue-line)}
+.fchip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.shelf{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 16px 6px}
+.pc{flex:0 0 214px;scroll-snap-align:start;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.pc .th{height:84px;position:relative;display:grid;place-items:center}
+.pc .type{position:absolute;top:8px;left:8px;font-size:11px;font-weight:600;background:#fff;color:var(--ink);padding:2px 8px;border-radius:10px}
+.pc .dur{position:absolute;bottom:8px;right:8px;font-size:11px;font-weight:600;background:rgba(17,24,39,.8);color:#fff;padding:2px 8px;border-radius:10px}
+.pc .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ttl2{font-size:13px;font-weight:600;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc .ttl2{min-height:35px}
+.src{font-size:12px;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:4px}
+.bdg{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px}
+.b-free{background:var(--green-soft);color:var(--green)}
+.b-audit{background:var(--blue-soft);color:var(--blue)}
+.b-paid{background:#F1F3F6;color:#374151}
+.b-cert{background:var(--amber-soft);color:var(--amber)}
+.b-hindi{background:var(--purple-soft);color:var(--purple)}
+.b-hr{border:1px solid var(--blue-line);color:var(--blue);padding:1px 7px}
+.acts{display:flex;align-items:center;gap:6px}
+.pc .acts{margin-top:auto;padding-top:4px}
+.btn-soft{height:40px;padding:0 16px;border-radius:20px;background:var(--blue-soft);color:var(--blue);font-size:12.5px;font-weight:600;flex-shrink:0}
+.btn-pri{height:40px;padding:0 18px;border-radius:20px;background:var(--blue);color:#fff;font-size:13px;font-weight:600;flex-shrink:0}
+.btn-pri.lg{height:44px;padding:0 16px}
+.ic{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;flex-shrink:0}
+.ic.on{background:var(--blue-soft);border-color:var(--blue-line)}
+.pc .ic.save{margin-left:auto}
+.empty-shelf{flex:1;padding:22px 12px;text-align:center;font-size:12.5px;color:var(--muted);border:1px dashed #C9DAF0;border-radius:16px}
+.ask{margin:10px 16px 0;display:flex;gap:8px}
+.askbar{flex:1;min-width:0;height:50px;border-radius:25px;border:1px solid #C9DAF0;background:#F4F8FD;display:flex;align-items:center;gap:10px;padding:0 16px;color:#4B5563;font-size:13.5px;text-align:left}
+.askbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mic-big{width:50px;height:50px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.foot{text-align:center;font-size:11.5px;color:var(--muted);margin-top:10px}
+.mini{border-radius:12px;flex-shrink:0;display:grid;place-items:center}
+
+/* Chat */
+.chat{background:#F5F8FC}
+.hdr{background:#fff;display:flex;align-items:center;gap:8px;padding:8px 10px 8px 6px;border-bottom:1px solid var(--line)}
+.hbtn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;flex-shrink:0}
+.hbtn:hover{background:#F1F4F8}
+.hdr .logo{width:36px;height:36px;border-radius:11px}
+.hdr .t{font-weight:600;font-size:15px;line-height:1.2}
+.hdr .s{font-size:11.5px;color:var(--green)}
+.mylearn{position:relative;height:40px;padding:0 12px;border-radius:20px;border:1px solid var(--blue-line);background:var(--blue-soft);color:var(--blue);font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px;margin-left:auto}
+.badge{position:absolute;top:-5px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--pink);color:#fff;font-size:10.5px;font-weight:600;display:grid;place-items:center;padding:0 4px}
+.msgs{flex:1;min-height:0;overflow-y:auto;padding:14px 12px 12px;display:flex;flex-direction:column;gap:10px;position:relative}
+.bubble{max-width:86%;padding:11px 14px;border-radius:18px;font-size:14px;line-height:1.5;animation:pop .25s ease}
+.bot{background:#fff;align-self:flex-start;border-bottom-left-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.me{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:6px;max-width:82%}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start;max-width:96%;animation:pop .25s ease}
+.chip{min-height:44px;padding:0 14px;border-radius:22px;border:1px solid var(--blue-line);color:var(--blue);background:#fff;font-size:13px;font-weight:500}
+.chip:hover{background:var(--blue-soft)}
+.chips.used{opacity:.45;pointer-events:none}
+.typing{display:flex;align-items:center;gap:10px}
+.dotsy{display:flex;gap:3px}
+.dotsy i{width:6px;height:6px;border-radius:3px;background:#9CA3AF;animation:blink 1.2s infinite}
+.dotsy i:nth-child(2){animation-delay:.2s}.dotsy i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.typing span{font-size:12.5px;color:var(--muted)}
+/* Recommendation card (original design) */
+.reco{background:#fff;border-radius:18px;border-top-left-radius:6px;align-self:flex-start;width:92%;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.07);animation:pop .3s ease}
+.reco h4{font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px}
+.reco .for{font-size:11.5px;color:var(--muted);margin:2px 0 10px}
+.rtabs{display:flex;background:#F1F4F8;border-radius:12px;padding:3px;gap:3px;margin-bottom:10px}
+.rtabs button{flex:1;font-size:12px;font-weight:500;padding:7px 0;border-radius:9px;color:#4B5563}
+.rtabs button.on{background:#fff;color:var(--blue);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.rtabs .n{font-size:10px;background:#E5EAF1;border-radius:8px;padding:0 5px;margin-left:3px}
+.rtabs button.on .n{background:var(--blue-soft)}
+.reco .thumb{height:132px;border-radius:12px;position:relative;display:grid;place-items:center;color:#fff}
+.reco .thumb .type{position:absolute;top:8px;left:8px;font-size:10px;font-weight:600;background:rgba(255,255,255,.92);color:var(--ink);padding:3px 8px;border-radius:10px}
+.reco .thumb .plat{position:absolute;bottom:8px;right:8px;font-size:10px;font-weight:600;background:rgba(0,0,0,.55);padding:3px 8px;border-radius:10px}
+.reco .rc-title{font-size:13.5px;font-weight:600;line-height:1.3;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.reco .rc-prov{font-size:11px;color:var(--muted)}
+.reco .rc-meta{font-size:11px;color:#374151;display:flex;gap:8px;align-items:center}
+.reco .topics{font-size:11px;color:#6B7280;margin-top:2px}
+.reco .item-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.reco .left-act{display:flex;align-items:center;gap:8px}
+.reco .primary{background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;padding:8px 16px;border-radius:18px}
+.reco .bm{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.15s}
+.reco .bm.on{background:var(--blue-soft);border-color:#BFD4F2}
+.reco .pager{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
+.reco .pager button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
+.reco .pager button:disabled{opacity:.35;cursor:default}
+.reco .art-ph{height:96px;border-radius:12px;background:#F1F4F8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:11px;color:#6B7280}
+.reco .desc{font-size:11.5px;color:#4B5563;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px}
+.reco .fb{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);margin-top:12px;padding-top:9px}
+.reco .fb button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
+.reco .fb button.sel{background:var(--blue-soft);border-color:#BFD4F2}
+.composer{background:#fff;border-top:1px solid var(--line);padding:10px 12px 18px;display:flex;gap:8px;align-items:center}
+.composer input{flex:1;min-width:0;height:48px;border-radius:24px;border:1px solid #DCE3EC;background:#F4F7FB;padding:0 16px;font-size:14px;outline:none;color:var(--ink)}
+.composer input:focus{border-color:var(--blue)}
+.cbtn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.cbtn.mic{border:1px solid var(--blue-line);background:var(--blue-soft)}
+.cbtn.send{background:var(--blue)}
+.cbtn.stop{background:var(--pink)}
+.listening{flex:1;height:48px;border-radius:24px;background:#FDECEF;display:flex;align-items:center;gap:10px;padding:0 16px;color:#9F1239;font-size:13.5px;font-weight:500}
+.rec{width:10px;height:10px;border-radius:5px;background:var(--pink);animation:pulse 1.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(214,54,90,.45)}100%{box-shadow:0 0 0 10px rgba(214,54,90,0)}}
+
+/* My Learning */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:#fff;border-radius:14px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.stat b{display:block;font-size:22px;font-weight:700}
+.stat span{font-size:12px;color:var(--muted)}
+.tabs{display:flex;background:#E9EEF5;border-radius:14px;padding:3px;gap:3px}
+.tabs button{flex:1;min-height:40px;border-radius:11px;font-size:13px;font-weight:500;color:#374151}
+.tabs button.on{background:#fff;color:var(--blue);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tabs .n{font-size:11px;color:var(--muted);margin-left:2px}
+.lscroll{flex:1;min-height:0;overflow-y:auto;padding:14px 14px 24px;display:flex;flex-direction:column;gap:12px}
+.group{background:#fff;border-radius:16px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;flex-direction:column;gap:10px}
+.lrow{display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;background:#fff}
+.group .lrow{border:1px solid var(--line)}
+.lscroll > .lrow{box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.lrow .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.lrow .ttl2{font-size:13px;line-height:1.3}
+.pill{font-size:11px;font-weight:600;padding:1px 8px;border-radius:9px}
+.p-none{background:var(--amber-soft);color:var(--amber)}
+.p-opened,.p-half{background:var(--blue-soft);color:var(--blue)}
+.p-done{background:var(--green-soft);color:var(--green)}
+.sub{font-size:11.5px;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);font-size:13px;padding:40px 20px}
+
+/* Sheet + toast */
+.overlay{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;background:rgba(17,24,39,.45);animation:fade .2s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.overlay .backdrop{flex:1}
+.sheet{background:#fff;border-radius:24px 24px 0 0;padding:10px 20px 26px;display:flex;flex-direction:column;gap:14px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(100%)}to{transform:none}}
+.handle{width:40px;height:4px;border-radius:2px;background:#D5DCE6;align-self:center}
+.sh-head{display:flex;gap:12px;align-items:center}
+.sh-head .ttl{font-size:14px;font-weight:600;line-height:1.3}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fact{background:#F4F7FB;border-radius:12px;padding:10px}
+.fact span{font-size:11px;color:var(--muted)}
+.fact b{display:block;font-size:13px;font-weight:600}
+.sh-text{font-size:13px;color:#374151;line-height:1.5}
+.btn-full{height:50px;border-radius:14px;background:var(--blue);color:#fff;font-size:14px;font-weight:600}
+.btn-out{height:46px;border-radius:14px;border:1px solid var(--blue-line);background:#fff;color:var(--blue);font-size:13.5px;font-weight:600}
+.back-tag{align-self:flex-start;font-size:11px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:3px 10px;border-radius:10px}
+.sh-q{font-size:18px;font-weight:700}
+.opt{min-height:52px;border-radius:14px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;padding:0 16px;text-align:left;width:100%}
+.opt.done{border:1px solid #BFE6D1;background:#F0FAF5;color:var(--green)}
+.opt.half{border:1px solid var(--blue-line);background:#F4F8FD;color:var(--blue)}
+.opt.none{border:1px solid var(--line);background:#fff;color:#374151}
+.privacy{font-size:11.5px;color:var(--muted);text-align:center}
+.toast{position:absolute;left:24px;right:24px;bottom:96px;z-index:50;background:#111827;color:#fff;font-size:12.5px;padding:11px 14px;border-radius:12px;text-align:center;pointer-events:none;opacity:0;transform:translateY(12px);transition:.25s}
+.toast.show{opacity:.96;transform:none}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="status"><span id="clock">09:12</span><span>●●●● 57%</span></div>
+  <div class="screen">
+
+    <!-- HOME -->
+    <div class="view" id="vHome">
+      <div class="topbar">
+        <div class="avatar" aria-hidden="true">S</div>
+        <div class="search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label for="appSearch" class="vh">Search apps</label>
+          <input id="appSearch" placeholder="Search">
+        </div>
+        <button class="moon" aria-label="Dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      </div>
+      <div class="scroll noscroll" id="homeScroll"></div>
+      <nav class="nav" aria-label="Main">
+        <button class="act" aria-current="page"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" aria-hidden="true"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+        <button data-act="app"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg>Applications</button>
+        <button data-act="app"><span class="midas" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><rect x="5" y="7" width="14" height="11" rx="4"/><circle cx="9.5" cy="12" r="1.5" fill="#C2185B"/><circle cx="14.5" cy="12" r="1.5" fill="#C2185B"/></svg></span>MiDAS</button>
+        <button data-act="app"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>Favorites</button>
+      </nav>
+    </div>
+
+    <!-- CHAT -->
+    <div class="view chat hidden" id="vChat">
+      <div class="hdr">
+        <button class="hbtn" data-act="go" data-v="home" aria-label="Back to home"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div class="logo" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+        <div><div class="t">MiLearning.AI</div><div class="s">Your learning assistant</div></div>
+        <button class="mylearn" data-act="go" data-v="learn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>My Learning
+          <span class="badge hidden" id="badge"></span>
+        </button>
+        <button class="hbtn" data-act="newChat" aria-label="New chat"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      </div>
+      <div class="msgs noscroll" id="msgs"></div>
+      <div class="composer" id="composer"></div>
+    </div>
+
+    <!-- MY LEARNING -->
+    <div class="view chat hidden" id="vLearn">
+      <div class="hdr">
+        <button class="hbtn" data-act="backLearn" aria-label="Back"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <div><div class="t" style="font-size:16px">My Learning</div><div style="font-size:11.5px;color:var(--muted)">FY27 learning plan</div></div>
+      </div>
+      <div class="lscroll noscroll" id="learnBody"></div>
+    </div>
+
+    <div id="sheetHost"></div>
+    <div class="toast" id="toast" role="status"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- Sample data (placeholder only) ---------- */
+const PLAT = {Coursera:'#0056D2', Udemy:'#5624D0', YouTube:'#C4302B', 'Microsoft Learn':'#0F6CBD', Web:'#0E7C66'};
+const NEED = 'Team Management';
+const PICKS = [
+  {id:'a1',assigned:true,type:'Course',platform:'Coursera',title:'Leading High-Performing Teams',prov:'Sample University',dur:'4 weeks',mins:600,cost:'Free to audit',cert:true,need:NEED},
+  {id:'a2',assigned:true,type:'Video',platform:'YouTube',title:'Team Management Full Course for New Managers',prov:'Sample Channel',dur:'1h 42m',mins:102,cost:'Free',need:NEED},
+  {id:'s1',type:'Video',platform:'YouTube',title:'Giving Feedback Your Team Will Act On',prov:'Sample Channel',dur:'9 min',mins:9,cost:'Free',hindi:true,need:NEED},
+  {id:'a3',assigned:true,type:'Course',platform:'Udemy',title:'People Management Essentials: Delegation & Feedback',prov:'Sample Instructor',dur:'6h 10m',mins:370,cost:'Paid',cert:true,need:NEED},
+  {id:'a4',assigned:true,type:'Article',platform:'Web',title:'How to Run Effective One-on-Ones With Your Team',prov:'example.com',dur:'5 min read',mins:5,cost:'Free',need:NEED},
+  {id:'s2',type:'Article',platform:'Web',title:'Delegating Without Micromanaging',prov:'sample-blog.com',dur:'8 min read',mins:8,cost:'Free',need:NEED}
+];
+/* Chat recommendations: same structure and sample content as the original card */
+const GRAD={Coursera:['#0056D2','#3E8BFF'],Udemy:['#5624D0','#A435F0'],YouTube:['#C4302B','#FF5A4E'],'Microsoft Learn':['#0F6CBD','#40A3E8'],Web:['#0E7C66','#2BB596']};
+function sample(topic,lvl){
+  const k=topic.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  const tag=(arr,type,p)=>arr.map((x,i)=>({...x,type,id:`r-${k}-${p}${i}`,need:topic,lvl}));
+  return {
+    Courses:tag([
+      {platform:'Coursera',title:`${topic}: ${lvl} Specialization`,prov:'Sample University',meta:'★ 4.8 · 22.7K reviews · 1–4 weeks',topics:'Core concepts • Practical frameworks • Case studies',btn:'View Course',dur:'1–4 weeks',cost:'Free to audit',cert:true},
+      {platform:'Udemy',title:`Complete ${topic} Masterclass`,prov:'Sample Instructor',meta:'★ 4.6 · 8.1K reviews · 6h 30m',topics:'Fundamentals • Tools • Real-world practice',btn:'View Course',dur:'6h 30m',cost:'Paid',cert:true}],'Course','c'),
+    Videos:tag([
+      {platform:'YouTube',title:`${topic} Full Course (${lvl})`,prov:'Sample Channel',meta:'2h 05m · 410K views · 9.2K likes',topics:'Overview • Step-by-step walkthrough • Tips',btn:'Watch Video',dur:'2h 05m',cost:'Free'}],'Video','v'),
+    Articles:tag([
+      {platform:'Web',prov:'example.com',title:`A Practical Guide to ${topic}`,date:'Oct 2026',desc:`An introduction to ${topic.toLowerCase()} with examples, common mistakes and a checklist you can apply at work right away.`,btn:'Read Article',dur:'Article',cost:'Free'},
+      {platform:'Web',prov:'sample-blog.com',title:`${topic}: 7 Habits That Make a Difference`,date:'Sep 2026',desc:'Short, actionable habits backed by examples from practitioners across industries.',btn:'Read Article',dur:'Article',cost:'Free'},
+      {platform:'Web',prov:'learning-hub.org',title:`What ${lvl} ${topic} Looks Like in Practice`,date:'Aug 2026',desc:'How to move from basics to confident application, with a simple self-assessment.',btn:'Read Article',dur:'Article',cost:'Free'}],'Article','a')
+  };
+}
+const TARGET='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#0B57B7"/></svg>';
+const DOCG='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>';
+const THUMB14='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 0 1 3 3v4h6a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.6 21H7"/></svg>';
+const LEVELS=['Just starting','I know the basics',"I'm quite confident",'Not sure, you decide'];
+const LVL_MAP=['Beginner','Intermediate','Advanced','Intermediate'];
+const LOAD=['Understanding what you need…','Checking Coursera, Udemy, YouTube and Microsoft Learn…','Picking the best few for you…'];
+const ST_LABEL={none:'Not started',opened:'Opened',half:'Halfway',done:'Finished'};
+const GREET_CHIPS=['Continue: Team Management','Excel for reports','Speaking up in meetings','Handling tough conversations'];
+const MIC_DEMO='मुझे Excel में pivot table सीखना है';
+
+/* ---------- State ---------- */
+const S = {
+  screen:'home', prev:'home', timeF:'all',
+  stage:'greet', topic:'', said:'', lvl:'', lvlSaid:'', lvlGuess:false, fromPlan:false, loadStep:0,
+  tab:'Courses', idx:0, fb:null, chatNote:'', listening:false,
+  sheet:null, lt:'assigned',
+  saved:{s1:true}, items:{}, status:{a1:'half',a4:'done'}, hist:['a1','a4'],
+  when:{a1:'Yesterday, 8:42 pm',a4:'Mon, 9:15 am'}
+};
+PICKS.forEach(p=>S.items[p.id]=p);
+let timers=[];
+const later=(fn,ms)=>{const t=setTimeout(fn,ms);timers.push(t);return t;};
+const clearTimers=()=>{timers.forEach(clearTimeout);timers=[];};
+
+/* ---------- Helpers ---------- */
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+const nowT=()=>new Date().toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true});
+function extractTopic(t){
+  if(/pivot/i.test(t)) return 'Excel Pivot Tables';
+  if(/excel/i.test(t)) return 'Excel for Reports';
+  const s=t.toLowerCase().replace(/^(i (want|would like|need) to (learn|get better at|improve)( on| in)?|i struggle with|help me (with|learn)|how (do i|to)|learn|teach me)\s*/,'').replace(/[?.!]/g,'').trim();
+  if(/[^\x00-\x7F]/.test(s)) return t.slice(0,40);
+  return s.split(' ').slice(0,5).map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ')||t;
+}
+function deco(it){
+  const st=S.status[it.id]||'none';
+  const verb=it.type==='Video'?'Watch':it.type==='Article'?'Read':'Start';
+  return {...it, st,
+    bg:PLAT[it.platform]||PLAT.Web,
+    src:it.platform==='Web'?it.prov:it.platform,
+    costCls:it.cost==='Free'?'b-free':it.cost==='Free to audit'?'b-audit':'b-paid',
+    saved:!!S.saved[it.id],
+    action:st==='done'?'Revisit':(st==='half'||st==='opened')?'Resume':verb,
+    stLabel:ST_LABEL[st], when:S.when[it.id]||''};
+}
+function icon(type,size){
+  const a=`width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
+  if(type==='Video') return `<svg ${a}><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z" fill="#fff"/></svg>`;
+  if(type==='Article') return `<svg ${a}><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>`;
+  if(type==='Module') return `<svg ${a}><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M8 7h7"/></svg>`;
+  return `<svg ${a}><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>`;
+}
+const mini=(d,px,ic)=>`<div class="mini" style="width:${px}px;height:${px}px;background:${d.bg}" aria-hidden="true">${icon(d.type,ic)}</div>`;
+const BM_OFF='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
+const BM_ON='<svg width="18" height="18" viewBox="0 0 24 24" fill="#0B57B7" stroke="#0B57B7" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
+const SHARE='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>';
+const THUMB='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11H3V10zM7 10l4-8a3 3 0 0 1 3 3v4h6a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.6 21H7"/></svg>';
+const MIC=c=>`<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg>`;
+function badges(d,withHr){
+  return `<div class="badges"><span class="bdg ${d.costCls}">${esc(d.cost)}</span>`+
+    (d.cert?'<span class="bdg b-cert">Certificate</span>':'')+
+    (d.hindi?'<span class="bdg b-hindi">हिंदी</span>':'')+
+    (withHr&&d.assigned?'<span class="bdg b-hr">HR assigned</span>':'')+'</div>';
+}
+const saveBtn=(d,extra='')=>`<button class="ic ${extra} ${d.saved?'on':''}" data-act="save" data-id="${d.id}" aria-label="${d.saved?'Remove from saved':'Save for later'}">${d.saved?BM_ON:BM_OFF}</button>`;
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2300);}
+
+/* ---------- Home ---------- */
+function renderHome(){
+  const done=PICKS.filter(p=>p.assigned&&S.status[p.id]==='done').length;
+  const cont=PICKS.find(p=>p.assigned&&(S.status[p.id]==='half'||S.status[p.id]==='opened'));
+  const tf=S.timeF;
+  const picks=PICKS.filter(p=>S.status[p.id]!=='done'&&(!cont||p.id!==cont.id))
+    .filter(p=>tf==='all'||(tf==='quick'&&p.mins<=10)||(tf==='mid'&&p.mins<=120)||(tf==='deep'&&p.mins>120)).map(deco);
+  const tchips=[['all','All'],['quick','Under 10 min'],['mid','Under 2 hrs'],['deep','Full courses']]
+    .map(([k,l])=>`<button class="fchip ${tf===k?'on':''}" data-act="timeF" data-v="${k}">${l}</button>`).join('');
+  const c=cont?deco(cont):null;
+  const today=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+  $('homeScroll').innerHTML=`
+  <div class="tile">
+    <div class="tile-head">
+      <div class="logo" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+      <div><div class="t-title">MiLearning.AI</div><div class="t-sub">Today's picks for you</div></div>
+      <div class="date">${today}</div>
+    </div>
+    <div class="goal">
+      <div class="goal-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#0B57B7"/></svg>
+        <div><div class="goal-lbl">Your FY27 goal · Assigned by HR</div><div class="goal-name">Team Management <span class="lvl">Intermediate</span></div></div>
+        <div class="goal-count">${done}/4 done</div>
+      </div>
+      <div class="bar" aria-hidden="true"><i style="width:${done/4*100}%"></i></div>
+      <div class="goal-lbl">Due 31 Mar 2027 · part of your FY27 learning plan</div>
+    </div>
+    ${c?`<div class="cont">${mini(c,48,24)}
+      <div class="meta"><div class="goal-lbl">Pick up where you left off</div><div class="ttl">${esc(c.title)}</div><div class="st">${c.stLabel} · ${esc(c.when)}</div></div>
+      <button class="btn-pri lg" data-act="open" data-id="${c.id}">${c.action}</button></div>`:''}
+    <div class="label">Got a few minutes?</div>
+    <div class="chiprow noscroll">${tchips}</div>
+    <div class="shelf noscroll">
+      ${picks.length?picks.map(d=>`
+      <div class="pc">
+        <div class="th" style="background:${d.bg}">${icon(d.type,32)}<span class="type">${d.type}</span><span class="dur">${esc(d.dur)}</span></div>
+        <div class="bd">
+          <div class="ttl2">${esc(d.title)}</div>
+          <div class="src">${esc(d.src)}</div>
+          ${badges(d,true)}
+          <div class="acts"><button class="btn-soft" data-act="open" data-id="${d.id}">${d.action}</button>${saveBtn(d,'save')}</div>
+        </div>
+      </div>`).join(''):`<div class="empty-shelf">Nothing that length today. Try another time slot.</div>`}
+    </div>
+    <div class="ask">
+      <button class="askbar" data-act="go" data-v="chat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Ask anything, in English or Hinglish</span>
+      </button>
+      <button class="mic-big" data-act="chatMic" aria-label="Ask by voice">${MIC('#fff')}</button>
+    </div>
+    <div class="foot">Refreshed daily from your FY27 learning plan</div>
+  </div>
+  <h2 class="section">Most Used Apps</h2>
+  <div class="apps">
+    <button class="app" data-act="app"><div class="icn"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="15" height="14" rx="2"/><path d="M3 9h15M7 3v4M14 3v4"/><circle cx="18" cy="17" r="4" fill="#12A26A" stroke="#fff"/></svg></div><p>Apply Leave</p></button>
+    <button class="app" data-act="app"><div class="icn"><svg width="50" height="50" viewBox="0 0 24 24" fill="#0B57B7" aria-hidden="true"><path d="M6 2h12v20l-2-1.5-2 1.5-2-1.5-2 1.5-2-1.5L6 22z"/><path d="M9 8h6M9 12h6M9 16h4" stroke="#fff" stroke-width="1.5"/></svg></div><p>Payslip</p></button>
+  </div>`;
+}
+
+/* ---------- Chat ---------- */
+function renderChat(scroll){
+  const greet=new Date().getHours()<12?'Good morning':new Date().getHours()<17?'Good afternoon':'Good evening';
+  let h=`<div class="bubble bot"><b>${greet}, Siddhant</b><br>Tell me what you want to get better at. Type, or tap the mic and just speak. English, Hindi or Hinglish all work.</div>
+  <div class="chips ${S.stage!=='greet'?'used':''}">${GREET_CHIPS.map((l,i)=>`<button class="chip" data-act="greet" data-v="${i}">${l}</button>`).join('')}</div>`;
+  if(S.said) h+=`<div class="bubble me">${esc(S.said)}</div>`;
+  if(S.stage!=='greet'&&!S.fromPlan){
+    h+=`<div class="bubble bot">Got it: <b>${esc(S.topic)}</b>. How comfortable are you with it today?</div>
+    <div class="chips ${S.stage!=='level'?'used':''}">${LEVELS.map((l,i)=>`<button class="chip" data-act="lvl" data-v="${i}">${esc(l)}</button>`).join('')}</div>`;
+  }
+  if(S.fromPlan&&S.stage!=='greet') h+=`<div class="bubble bot">Picking up your HR-assigned goal: <b>Team Management</b> at Intermediate. No questions needed.</div>`;
+  if(S.lvlSaid) h+=`<div class="bubble me">${esc(S.lvlSaid)}</div>`;
+  if(S.stage==='loading') h+=`<div class="bubble bot typing"><div class="dotsy"><i></i><i></i><i></i></div><span>${LOAD[S.loadStep]}</span></div>`;
+  if(S.stage==='results'){
+    if(S.lvlGuess) h+=`<div class="bubble bot">No problem. I've started you at <b>Intermediate</b>. Pick a level anytime if it feels off.</div>`;
+    h+=resultsCard();
+    h+=`<div class="bubble bot">Want to explore something else? Just type or speak below.</div>`;
+  }
+  if(S.chatNote) h+=`<div class="bubble bot">${esc(S.chatNote)}</div>`;
+  $('msgs').innerHTML=h;
+  const n=Object.keys(S.saved).length, b=$('badge'); b.textContent=n; b.classList.toggle('hidden',!n);
+  if(scroll){
+    setTimeout(()=>{const m=$('msgs'),card=$('recoCard');
+      if(scroll==='card'&&card) m.scrollTo({top:card.offsetTop-12,behavior:'smooth'});
+      else m.scrollTo({top:m.scrollHeight,behavior:'smooth'});},40);
+  }
+}
+function resultsCard(){
+  const data=sample(S.topic,S.lvl);
+  Object.values(data).flat().forEach(r=>S.items[r.id]=S.items[r.id]||r);
+  const list=data[S.tab]; const idx=Math.min(S.idx,list.length-1); const d=deco(list[idx]);
+  const g=GRAD[d.platform]||GRAD.Web;
+  const label=d.st==='done'?'Revisit':(d.st==='half'||d.st==='opened')?'Resume':d.btn;
+  const body=S.tab==='Articles'
+    ?`<div class="art-ph">${DOCG}${esc(d.prov)}</div>
+      <div class="rc-title">${esc(d.title)}</div><div class="rc-prov">${esc(d.prov)} · Article · ${d.date}</div><div class="desc">${esc(d.desc)}</div>`
+    :`<div class="item"><div class="thumb" style="background:linear-gradient(135deg,${g[0]},${g[1]})">${icon(d.type,d.type==='Video'?38:34)}<span class="type">${d.type}</span><span class="plat">${d.platform}</span></div>
+      <div class="rc-title">${esc(d.title)}</div><div class="rc-prov">${esc(d.prov)} · ${d.platform}</div>
+      <div class="rc-meta">${d.meta}</div><div class="topics">${d.topics}</div></div>`;
+  return `<div class="reco" id="recoCard">
+    <h4>${TARGET}Learning Recommendations</h4>
+    <div class="for">For <b>${esc(S.topic)}</b> · pitched at ${S.lvl}</div>
+    <div class="rtabs">${Object.keys(data).map(t=>`<button class="${t===S.tab?'on':''}" data-act="rtab" data-v="${t}">${t}<span class="n">${data[t].length}</span></button>`).join('')}</div>
+    ${body}
+    <div class="item-foot">
+      <div class="left-act"><button class="primary" data-act="open" data-id="${d.id}">${label}</button>
+        <button class="bm ${d.saved?'on':''}" data-act="save" data-id="${d.id}" title="Save for later" aria-label="${d.saved?'Remove from saved':'Save for later'}">${d.saved?BM_ON:BM_OFF}</button></div>
+      <div class="pager"><button data-act="page" data-v="-1" aria-label="Previous" ${idx===0?'disabled':''}>‹</button>${idx+1} of ${list.length}<button data-act="page" data-v="1" aria-label="Next" ${idx===list.length-1?'disabled':''}>›</button></div>
+    </div>
+    <div class="fb">Was this helpful?<button class="${S.fb==='up'?'sel':''}" data-act="fb" data-v="up" aria-label="Helpful">${THUMB14}</button><button class="${S.fb==='down'?'sel':''}" data-act="fb" data-v="down" aria-label="Not helpful" style="transform:rotate(180deg)">${THUMB14}</button></div>
+  </div>`;
+}
+function renderComposer(){
+  $('composer').innerHTML=S.listening
+    ?`<div class="listening" role="status"><span class="rec" aria-hidden="true"></span>Listening… any language is fine</div>
+      <button class="cbtn stop" data-act="stopMic" aria-label="Stop listening"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg></button>`
+    :`<label for="inp" class="vh">Message MiLearning.AI</label>
+      <input id="inp" placeholder="Type or speak…" value="${esc(S.draft||'')}">
+      <button class="cbtn mic" data-act="mic" aria-label="Speak your question">${MIC('#0B57B7')}</button>
+      <button class="cbtn send" data-act="send" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l2.5 7L15 12l-9.5 1.5z"/></svg></button>`;
+  const i=$('inp');
+  if(i){i.addEventListener('input',e=>S.draft=e.target.value);i.addEventListener('keydown',e=>{if(e.key==='Enter')send();});}
+}
+function resetChat(){Object.assign(S,{stage:'greet',topic:'',said:'',lvl:'',lvlSaid:'',lvlGuess:false,fromPlan:false,loadStep:0,tab:'Courses',idx:0,fb:null,chatNote:''});}
+function pickTopic(text){resetChat();Object.assign(S,{said:text,topic:extractTopic(text),stage:'level'});renderChat('bottom');}
+function pickLevel(i){Object.assign(S,{lvlSaid:LEVELS[i],lvl:LVL_MAP[i],lvlGuess:i===3});runLoading();}
+function runLoading(){
+  S.stage='loading';S.loadStep=0;renderChat('bottom');
+  later(()=>{S.loadStep=1;renderChat();},700);
+  later(()=>{S.loadStep=2;renderChat();},1400);
+  later(()=>{S.stage='results';renderChat('card');},2100);
+}
+function send(){
+  const v=(S.draft||'').trim(); if(!v) return;
+  S.draft=''; renderComposer();
+  if(S.stage==='level'){
+    const i=[/start|beginner|new/i,/basic|intermediate/i,/confident|advanced|expert|good/i,/not sure|decide/i].findIndex(r=>r.test(v));
+    if(i>=0){S.said=S.said;pickLevel(i);return;}
+  }
+  pickTopic(v);
+}
+let micT;
+function mic(){S.listening=true;renderComposer();micT=later(()=>{S.listening=false;S.draft=MIC_DEMO;renderComposer();$('inp')&&$('inp').focus();},1700);}
+
+/* ---------- My Learning ---------- */
+function lrow(d,meta,action=true,extra=''){
+  return `<div class="lrow">${mini(d,48,24)}<div class="info"><div class="ttl2">${esc(d.title)}</div>${meta}</div>
+    ${action?`<button class="btn-soft" data-act="open" data-id="${d.id}">${d.action}</button>`:''}${extra}</div>`;
+}
+function renderLearn(){
+  const savedIds=Object.keys(S.saved).filter(id=>S.items[id]);
+  const vals=Object.values(S.status);
+  const done=PICKS.filter(p=>p.assigned&&S.status[p.id]==='done').length;
+  const tabs=[['assigned','Assigned',4],['saved','Saved',savedIds.length],['history','History',S.hist.length]]
+    .map(([k,l,n])=>`<button class="${S.lt===k?'on':''}" data-act="tab" data-v="${k}">${l}<span class="n">${n}</span></button>`).join('');
+  let body='';
+  if(S.lt==='assigned'){
+    body=`<div class="group">
+      <div class="goal-row">
+        <div class="logo" style="width:34px;height:34px;border-radius:10px" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="#fff"/></svg></div>
+        <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">Team Management</div><div class="sub">Intermediate · Assigned by HR · Due 31 Mar 2027</div></div>
+        <div class="goal-count">${done} of 4</div>
+      </div>
+      <div class="bar" aria-hidden="true"><i style="width:${done/4*100}%"></i></div>
+      ${PICKS.filter(p=>p.assigned).map(deco).map(d=>lrow(d,`<div class="acts" style="gap:6px;flex-wrap:wrap"><span class="pill p-${d.st}">${d.stLabel}</span><span class="sub">${esc(d.src)} · ${esc(d.dur)}</span></div>`)).join('')}
+    </div>`;
+  } else if(S.lt==='saved'){
+    body=savedIds.length?savedIds.map(id=>deco(S.items[id])).map(d=>lrow(d,`<div class="sub">${d.type} · ${esc(d.dur)} · for ${esc(d.need)}</div>`,true,saveBtn(d))).join('')
+      :'<div class="empty">Nothing saved yet. Tap the bookmark on any pick to keep it here.</div>';
+  } else {
+    body=S.hist.length?S.hist.filter(id=>S.items[id]).map(id=>deco(S.items[id])).map(d=>lrow(d,`<div class="acts" style="gap:6px;flex-wrap:wrap"><span class="pill p-${d.st}">${d.stLabel}</span><span class="sub">${esc(d.when)}</span></div>`)).join('')
+      :'<div class="empty">Courses, videos and articles you open will show up here.</div>';
+  }
+  $('learnBody').innerHTML=`
+    <div class="stats">
+      <div class="stat"><b style="color:var(--green)">${vals.filter(v=>v==='done').length}</b><span>Finished</span></div>
+      <div class="stat"><b style="color:var(--blue)">${vals.filter(v=>v==='half'||v==='opened').length}</b><span>In progress</span></div>
+      <div class="stat"><b>${savedIds.length}</b><span>Saved</span></div>
+    </div>
+    <div class="tabs" role="tablist">${tabs}</div>${body}`;
+}
+
+/* ---------- Sheet ---------- */
+function renderSheet(){
+  const host=$('sheetHost');
+  if(!S.sheet){host.innerHTML='';return;}
+  const d=deco(S.items[S.sheet.id]);
+  const head=`<div class="sh-head">${mini(d,52,24)}<div style="flex:1;min-width:0"><div class="ttl">${esc(d.title)}</div><div class="src">${d.type} · ${esc(d.src)} · ${esc(d.dur)}</div></div></div>`;
+  const leaving=`
+    <div class="facts">
+      <div class="fact"><span>Cost</span><b>${esc(d.cost)}</b></div>
+      <div class="fact"><span>Certificate</span><b>${d.cert?'Yes':'No'}</b></div>
+      <div class="fact"><span>Language</span><b>${d.hindi?'Hindi':'English'}</b></div>
+    </div>
+    <div class="sh-text">You'll leave the Employee App for a bit. Come back here after and tell us how far you got. It counts toward your FY27 plan.</div>
+    <button class="btn-full" data-act="toCheckin">Continue to ${esc(d.src)}</button>
+    ${d.saved?'':'<button class="btn-out" data-act="saveInstead">Not now, save for later</button>'}`;
+  const checkin=`
+    <div class="back-tag">Back from ${esc(d.src)} (mock)</div>
+    <div class="sh-q">How far did you get?</div>
+    <button class="opt done" data-act="ci" data-v="done"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B6B45" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Finished it</button>
+    <button class="opt half" data-act="ci" data-v="half"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="#0B57B7"/></svg>Got halfway</button>
+    <button class="opt none" data-act="ci" data-v="none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Haven't started yet</button>
+    <div class="privacy">Only completion status goes to your learning plan.</div>`;
+  host.innerHTML=`<div class="overlay"><button class="backdrop" data-act="closeSheet" aria-label="Close"></button>
+    <div class="sheet" role="dialog" aria-label="${esc(d.title)}"><div class="handle" aria-hidden="true"></div>${head}${S.sheet.step==='leaving'?leaving:checkin}</div></div>`;
+}
+
+/* ---------- Actions ---------- */
+function openItem(id){
+  const it=S.items[id]; if(!it) return;
+  S.hist=[id,...S.hist.filter(x=>x!==id)];
+  S.when[id]='Today, '+nowT();
+  if(!S.status[id]) S.status[id]='opened';
+  S.sheet={id,step:'leaving'};
+  renderAll();
+}
+function toggleSave(id){
+  if(S.saved[id]){delete S.saved[id];toast('Removed from saved');}
+  else{S.saved[id]=true;toast('Saved to My Learning');}
+  renderAll(true);
+}
+function checkin(choice){
+  const id=S.sheet.id, it=S.items[id];
+  S.status[id]=choice==='none'?'opened':choice;
+  const done=PICKS.filter(p=>p.assigned&&S.status[p.id]==='done').length;
+  let note,msg;
+  if(choice==='done'){
+    msg=it.assigned?`Marked finished · ${NEED}: ${done} of 4 done`:'Marked finished';
+    note=`Nice work. "${it.title}" is marked finished.`+(it.assigned?` ${NEED}: ${done} of 4 done.`:'');
+  } else if(choice==='half'){
+    msg='Saved your spot'; note=`Saved your spot on "${it.title}". I'll remind you tomorrow evening.`;
+  } else {
+    msg='No problem. It stays in My Learning'; note=`No problem. "${it.title}" stays in My Learning for when you're ready.`;
+  }
+  const inChat=S.screen==='chat'&&S.stage==='results';
+  if(inChat) S.chatNote=note;
+  S.sheet=null; renderAll(); if(inChat) renderChat('bottom');
+  toast(msg);
+}
+function go(v){
+  S.prev=S.screen; S.screen=v;
+  $('vHome').classList.toggle('hidden',v!=='home');
+  $('vChat').classList.toggle('hidden',v!=='chat');
+  $('vLearn').classList.toggle('hidden',v!=='learn');
+  renderAll(); if(v==='chat') renderChat('bottom');
+}
+function renderAll(keepScroll){
+  const m=$('msgs'),top=m.scrollTop;
+  if(S.screen==='home') renderHome();
+  if(S.screen==='chat'){renderChat(); if(keepScroll!==false) m.scrollTop=top;}
+  if(S.screen==='learn') renderLearn();
+  renderSheet();
+}
+const ACT={
+  go:v=>go(v),
+  backLearn:()=>go(S.prev==='learn'?'home':S.prev),
+  chatMic:()=>{go('chat');mic();},
+  app:()=>toast('Opens the existing Employee App screen (unchanged)'),
+  timeF:v=>{S.timeF=v;renderHome();},
+  open:(v,id)=>openItem(id),
+  save:(v,id)=>toggleSave(id),
+  share:()=>toast('Opens share sheet: Teams or WhatsApp (mock)'),
+  greet:v=>{const i=+v,l=GREET_CHIPS[i];
+    if(i===0){resetChat();Object.assign(S,{said:l,topic:NEED,lvl:'Intermediate',fromPlan:true});runLoading();}
+    else pickTopic(l);},
+  lvl:v=>pickLevel(+v),
+  rtab:v=>{S.tab=v;S.idx=0;renderAll();},
+  page:v=>{S.idx+=+v;renderAll();},
+  fb:v=>{S.fb=v;renderAll();},
+  newChat:()=>{clearTimers();resetChat();S.listening=false;S.draft='';renderChat();renderComposer();},
+  mic:()=>mic(),
+  stopMic:()=>{clearTimeout(micT);S.listening=false;renderComposer();},
+  send:()=>send(),
+  tab:v=>{S.lt=v;renderLearn();},
+  closeSheet:()=>{S.sheet=null;renderSheet();},
+  toCheckin:()=>{S.sheet.step='checkin';renderSheet();},
+  saveInstead:()=>{const id=S.sheet.id;S.sheet=null;toggleSave(id);},
+  ci:v=>checkin(v)
+};
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]'); if(!el) return;
+  const fn=ACT[el.dataset.act]; if(fn) fn(el.dataset.v,el.dataset.id);
+});
+$('appSearch').addEventListener('keydown',e=>{if(e.key==='Enter')toast('App search (unchanged from current build)');});
+
+/* ---------- Boot ---------- */
+function updateClock(){$('clock').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false});}
+updateClock(); setInterval(updateClock,1000);
+renderHome(); renderChat(); renderComposer();
+</script>
+</body>
+</html>
