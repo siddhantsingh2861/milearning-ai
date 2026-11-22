@@ -1,8 +1,13 @@
 # MiLearning.AI – UI Mockup
 
-A clickable mobile mockup of **MiLearning.AI**, an AI learning assistant built as a module inside an enterprise employee app.
+A clickable mobile mockup of **MiLearning.AI**, an AI learning agent built as a module inside an enterprise employee app.
 
-Employees tell it what they want to learn, by typing or speaking. It returns courses, videos and articles from Coursera, Udemy, YouTube, Microsoft Learn and the web. It also tracks the learning goals HR assigns.
+**The problem:** L&D spends heavily on creating content for the central LMS, in-house or through vendors. Most of it is generic, so it rarely fits what a given employee needs. Individual learning plans stay fragmented and need repeated HRBP or L&D follow-up.
+
+**The solution:** bring existing, relevant content to each employee, free wherever possible, instead of building more. It works two ways:
+
+- **Employee-led:** employees type or speak any learning need, in English, Hindi or Hinglish. They get relevant courses, videos and articles from Coursera, Udemy, YouTube, Microsoft Learn and the web.
+- **HR-led (the USP):** for each need flagged in an employee's goal sheet or performance conversation, HR pushes curated resources centrally. They arrive as an in-app notification and a Teams message, and progress shows against the goal.
 
 **Live demo:** https://siddhantsingh2861.github.io/milearning-ai/ (or download `index.html` and open it in any browser; no build step, no dependencies).
 

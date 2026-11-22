@@ -20,8 +20,8 @@ body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
     grid-template-areas:"intro phone" "details phone";column-gap:64px;align-items:start}
 .cs-intro{grid-area:intro}
 .cs-details{grid-area:details}
-.cs-phone{grid-area:phone;position:sticky;top:32px;display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:12px}
-.cs-hint{font-size:12.5px;color:var(--muted);text-align:center}
+.cs-phone{grid-area:phone;position:sticky;top:20px;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:0}
+.cs-hint{font-size:12.5px;color:var(--muted);text-align:center;margin-bottom:14px}
 .cs-eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
 .cs h1{font-size:44px;line-height:1.1;font-weight:700;margin:10px 0 14px;letter-spacing:-.01em}
 .cs-lead{font-size:17px;line-height:1.6;color:#374151;max-width:600px}
@@ -40,6 +40,41 @@ body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .cs-screen{background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
 .cs-screen b{display:block;font-size:14.5px;margin-bottom:4px}
 .cs-screen span{font-size:13.5px;line-height:1.55;color:#4B5563}
+.cs-uses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px;max-width:640px}
+.cs-use{background:#fff;border-radius:16px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,.05);border-top:3px solid var(--blue)}
+.cs-use.hr{border-top-color:#0E7C66}
+.cs-use .who{font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--blue)}
+.cs-use.hr .who{color:#0B6B45}
+.cs-use b{display:block;font-size:15.5px;margin:4px 0 6px;line-height:1.35}
+.cs-use span{font-size:13.5px;line-height:1.55;color:#4B5563}
+.cs-use .usp{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;background:#E3F5EC;color:#0B6B45;padding:2px 8px;border-radius:8px;margin-left:6px;vertical-align:2px}
+.cs-pushbtn{display:flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:22px;background:#0E7C66;color:#fff;font-size:13.5px;font-weight:600;box-shadow:0 4px 12px rgba(14,124,102,.25)}
+.cs-pushbtn:hover{background:#0B6B55}
+.cs-flow{display:flex;align-items:stretch;gap:8px;max-width:640px;flex-wrap:wrap}
+.cs-step{flex:1 1 170px;background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.cs-step i{font-style:normal;font-size:11px;font-weight:700;color:#0B6B45}
+.cs-step b{display:block;font-size:14px;margin:2px 0 3px}
+.cs-step span{font-size:13px;line-height:1.5;color:#4B5563}
+.cs-arrow{display:grid;place-items:center;color:#9CA3AF;font-size:18px}
+.cs-mocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:640px;margin-top:14px}
+.cs-mock{border-radius:16px;padding:14px;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+.cs-mock .cap{font-size:11.5px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.nt{display:flex;gap:10px;background:#F4F7FB;border-radius:14px;padding:11px}
+.nt .ico{width:34px;height:34px;border-radius:9px;background:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.nt .h{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.nt .t{font-size:13px;font-weight:600;margin:1px 0}
+.nt .b{font-size:12px;line-height:1.45;color:#374151}
+.tm{border:1px solid #E1E4EA;border-radius:12px;overflow:hidden}
+.tm .top{display:flex;align-items:center;gap:8px;padding:9px 11px;border-bottom:1px solid #E1E4EA;font-size:12px;font-weight:600}
+.tm .bot-ico{width:24px;height:24px;border-radius:7px;background:var(--blue);display:grid;place-items:center}
+.tm .top .time{font-weight:400;color:var(--muted);margin-left:auto;font-size:11px}
+.tm .msg{padding:10px 11px;font-size:12px;line-height:1.5;color:#374151}
+.tm .item{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-top:1px solid #F0F2F5;font-size:12px}
+.tm .item em{font-style:normal;color:var(--muted);white-space:nowrap}
+.tm .cta{display:flex;gap:6px;margin-top:8px}
+.tm .cta span{font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:6px;border:1px solid #C9CED8;color:#374151}
+.tm .cta span.p{background:#4F52B2;border-color:#4F52B2;color:#fff}
+@media (max-width:640px){.cs-uses,.cs-mocks{grid-template-columns:minmax(0,1fr)}.cs-arrow{display:none}}
 .cs-foot{margin-top:48px;padding-top:20px;border-top:1px solid #D5DEEA;font-size:13.5px;color:var(--muted);max-width:640px}
 .cs a{color:var(--blue);font-weight:500}
 @media (max-width:1000px){
@@ -246,6 +281,14 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 .opt.half{border:1px solid var(--blue-line);background:#F4F8FD;color:var(--blue)}
 .opt.none{border:1px solid var(--line);background:#fff;color:#374151}
 .privacy{font-size:11.5px;color:var(--muted);text-align:center}
+.push{position:absolute;top:8px;left:10px;right:10px;z-index:60;display:flex;gap:10px;align-items:flex-start;text-align:left;
+      background:#fff;border-radius:18px;padding:12px;box-shadow:0 10px 30px rgba(16,24,40,.22);
+      transform:translateY(-150%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.push.show{transform:none}
+.push .ico{width:38px;height:38px;border-radius:10px;background:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.push .h{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.push .t{font-size:13.5px;font-weight:600;margin:1px 0}
+.push .b{font-size:12.5px;line-height:1.45;color:#374151}
 .toast{position:absolute;left:24px;right:24px;bottom:96px;z-index:50;background:#111827;color:#fff;font-size:12.5px;padding:11px 14px;border-radius:12px;text-align:center;pointer-events:none;opacity:0;transform:translateY(12px);transition:.25s}
 .toast.show{opacity:.96;transform:none}
 </style>
@@ -256,20 +299,26 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
   <section class="cs-intro">
     <div class="cs-eyebrow">UI mockup · Employee app module</div>
     <h1>MiLearning.AI</h1>
-    <p class="cs-lead">An AI learning assistant inside an enterprise employee app. Employees say what they want to learn, by typing or speaking. It finds the most relevant courses, videos and articles across open web, and tracks the learning content HR assigns.</p>
-    <div class="cs-tags"><span>Mobile UX</span><span>Conversational UI</span><span>L&amp;D</span><span>Sample data only</span></div>
+    <p class="cs-lead">Personalised learning for every employee, without building more generic LMS content. MiLearning.AI finds relevant courses, videos and articles from the open web, free wherever possible, for any learning need an employee has.</p>
+    <div class="cs-uses">
+      <div class="cs-use"><div class="who">Employee-led</div><b>Ask for anything you want to learn</b><span>Type or speak a need in English, Hindi or Hinglish. Get relevant picks in seconds, right inside the employee app.</span></div>
+      <div class="cs-use hr"><div class="who">HR-led <span class="usp">USP</span></div><b>HR pushes learning for each person's needs</b><span>For needs flagged in an employee's goal sheet or performance conversation, HR pushes curated resources centrally. They arrive as an in-app notification and a Teams message.</span></div>
+    </div>
+    <div class="cs-tags"><span>AI agent</span><span>L&amp;D</span><span>Mobile UX</span><span>Sample data only</span></div>
 
     <h2>Try it</h2>
     <ol class="cs-try">
+      <li><span>Click <b>Simulate an HR push</b> above the phone. Tap the notification to see the resources HR assigned.</span></li>
       <li><span>Tap a time chip like <b>Under 10 min</b> to filter today's picks by the time you have.</span></li>
       <li><span>Tap the <b>mic</b> next to the ask bar. It fills a Hinglish question. Hit send and pick a level.</span></li>
       <li><span>Start a new chat and tap <b>Continue: Team Management</b>. It skips the level question because HR already set it.</span></li>
       <li><span>On the home tile, open a pick marked <b>HR assigned</b>, tap <b>Continue</b>, then choose <b>Finished it</b>. The goal bar moves from 1/4 to 2/4.</span></li>
-      <li><span>Open <b>My Learning</b> to see Assigned, Saved and History in one place.</span></li>
     </ol>
   </section>
 
   <div class="cs-phone">
+    <button class="cs-pushbtn" data-act="hrPush"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Simulate an HR push</button>
+    <div class="cs-hint">Interactive. Click anything on the phone.</div>
 <div class="phone">
   <div class="status"><span id="clock">09:12</span><span>●●●● 57%</span></div>
   <div class="screen">
@@ -320,15 +369,47 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
     </div>
 
     <div id="sheetHost"></div>
+    <button class="push" id="push" data-act="openPush" aria-live="polite">
+      <span class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+      <span style="flex:1;min-width:0"><span class="h"><span>MiLearning.AI · from HR</span><span>now</span></span>
+      <span class="t" style="display:block">4 resources for Team Management</span>
+      <span class="b" style="display:block">Picked for the need in your FY27 goal sheet. Tap to start.</span></span>
+    </button>
     <div class="toast" id="toast" role="status"></div>
   </div>
 </div>
-    <div class="cs-hint">Interactive. Click anything on the phone.</div>
   </div>
 
   <section class="cs-details">
     <h2>The problem</h2>
-    <p>Learning recommendations are generic, and reach employees as links they rarely open. Nobody knows what was finished. Organization is spending a big sum to create customized learning content in-house or through external vandors. Despite all this, employee-centric learning plans are still fragmented, and require HRBP or L&D teams intervention periodically.</p>
+    <p>L&amp;D spends heavily on creating content for the central LMS, in-house or through external vendors. Most of it is generic, so it rarely fits what a given employee actually needs. Recommendations reach people as links they don't open, nobody knows what was finished, and individual learning plans stay fragmented. Keeping them on track needs repeated HRBP or L&amp;D follow-up.</p>
+
+    <h2>The solution</h2>
+    <p>Instead of building more content, MiLearning.AI brings existing, relevant content to each employee, free wherever possible. It works two ways: employees ask for what they need, and HR pushes what each person needs.</p>
+
+    <h2>How the HR push works</h2>
+    <div class="cs-flow">
+      <div class="cs-step"><i>1 · SOURCE</i><b>Learning need is captured</b><span>From the goal sheet or a performance conversation. Example: Team Management, Intermediate.</span></div>
+      <div class="cs-arrow" aria-hidden="true">›</div>
+      <div class="cs-step"><i>2 · CURATE</i><b>HR pushes it centrally</b><span>The agent finds relevant resources for that need and level. HR sends them in one go.</span></div>
+      <div class="cs-arrow" aria-hidden="true">›</div>
+      <div class="cs-step"><i>3 · DELIVER</i><b>Employee gets it twice</b><span>An in-app notification and a Teams message. Progress shows up against the goal.</span></div>
+    </div>
+    <div class="cs-mocks">
+      <div class="cs-mock"><div class="cap">In-app notification</div>
+        <div class="nt"><span class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+          <div style="flex:1;min-width:0"><div class="h"><span>MiLearning.AI · from HR</span><span>now</span></div><div class="t">4 resources for Team Management</div><div class="b">Picked for the need in your FY27 goal sheet. Tap to start.</div></div></div>
+      </div>
+      <div class="cs-mock"><div class="cap">Teams message</div>
+        <div class="tm"><div class="top"><span class="bot-ico" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>MiLearning.AI<span class="time">9:30 am</span></div>
+          <div class="msg">Hi Siddhant, HR has shared learning resources for your goal: <b>Team Management (Intermediate)</b>.
+            <div class="item" style="margin-top:6px"><span>Leading High-Performing Teams</span><em>Course · Free to audit</em></div>
+            <div class="item"><span>Team Management Full Course</span><em>Video · Free</em></div>
+            <div class="item"><span>Effective One-on-Ones</span><em>Article · Free</em></div>
+            <div class="cta"><span class="p">View all 4</span><span>Remind me later</span></div>
+          </div></div>
+      </div>
+    </div>
 
     <h2>Design decisions</h2>
     <ul class="cs-list">
@@ -717,7 +798,11 @@ function renderAll(keepScroll){
   if(S.screen==='learn') renderLearn();
   renderSheet();
 }
+let pushT;
+function hidePush(){ $('push').classList.remove('show'); }
 const ACT={
+  hrPush:()=>{ clearTimeout(pushT); const p=$('push'); p.classList.remove('show'); void p.offsetWidth; p.classList.add('show'); pushT=setTimeout(hidePush,7000); },
+  openPush:()=>{ clearTimeout(pushT); hidePush(); S.lt='assigned'; go('learn'); },
   go:v=>go(v),
   backLearn:()=>go(S.prev==='learn'?'home':S.prev),
   chatMic:()=>{go('chat');mic();},
