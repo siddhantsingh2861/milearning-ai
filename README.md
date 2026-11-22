@@ -11,7 +11,7 @@ A clickable mobile mockup of **MiLearning.AI**, an AI learning agent built as a 
 
 **Live demo:** https://siddhantsingh2861.github.io/milearning-ai/ (or download `index.html` and open it in any browser; no build step, no dependencies).
 
-> This repo is a **sanitized design mockup**. The organization name is removed and all content is sample data. Nothing here connects to a real system.
+> This repo is a **sanitized design mockup**. All content is sample data. Nothing here connects to a real system.
 
 ---
 
