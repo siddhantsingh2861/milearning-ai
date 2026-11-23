@@ -13,28 +13,67 @@
   --purple:#6B21A8; --purple-soft:#F3E8FF; --radius:22px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#E6ECF4;color:var(--ink);min-height:100vh}
+body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#EEF2F8;color:var(--ink);min-height:100vh}
+body.lock{overflow:hidden}
 
 /* ---------- Case-study page layout ---------- */
-.cs{max-width:760px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;align-items:center}
-.cs-top{text-align:center;margin-bottom:22px}
-.cs-phone{display:flex;flex-direction:column;align-items:center;gap:10px;padding-bottom:16px}
-.cs-more{width:100%;margin-top:28px;background:#fff;border-radius:18px;box-shadow:0 1px 3px rgba(16,24,40,.06)}
-.cs-more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-radius:18px}
-.cs-more summary::-webkit-details-marker{display:none}
-.cs-more summary:hover{background:#F7FAFE}
-.cs-more summary b{display:block;font-size:16px}
-.cs-more .sub2{display:block;font-size:13px;color:var(--muted);margin-top:2px}
-.cs-more .chev{flex-shrink:0;transition:transform .2s}
-.cs-more[open] .chev{transform:rotate(180deg)}
-.cs-more[open] summary{border-bottom:1px solid #E5EAF1;border-radius:18px 18px 0 0}
-.cs-body{padding:6px 22px 26px}
+.cs{min-height:100vh;position:relative;overflow-x:hidden}
+.topnav{max-width:1240px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.logo-sm{width:34px;height:34px;border-radius:10px;background:var(--blue);display:grid;place-items:center}
+.navlinks{display:flex;gap:4px}
+.navlink{font-size:14px;font-weight:500;color:#374151;padding:9px 16px;border-radius:22px;text-decoration:none;white-space:nowrap}
+.navlink:hover{background:#fff}
+.stage{max-width:1240px;margin:0 auto;padding:8px 32px 32px;display:flex;align-items:center;justify-content:center;gap:72px;
+  transition:padding-right .5s cubic-bezier(.2,.8,.2,1)}
+.hero{flex:1 1 440px;max-width:520px;transition:opacity .35s ease}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.ghost{height:44px;padding:0 18px;border-radius:22px;border:1px solid #C9D6E8;background:#fff;color:var(--blue);font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.ghost:hover{border-color:var(--blue)}
+.ghost span{transition:transform .2s}.ghost:hover span{transform:translateX(3px)}
+.feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:30px}
+.feats li{display:flex;align-items:center;gap:12px;font-size:14.5px;color:#374151}
+.fi{width:36px;height:36px;border-radius:11px;background:#fff;display:grid;place-items:center;flex-shrink:0;box-shadow:0 1px 2px rgba(16,24,40,.06)}
+.cs-phone{flex:0 0 auto;position:relative;isolation:isolate;padding:10px 0 30px}
+.cs-phone::before{content:"";position:absolute;inset:-60px -90px;z-index:-2;
+  background:radial-gradient(closest-side at 50% 45%,rgba(11,87,183,.16),rgba(11,87,183,0)),radial-gradient(closest-side at 70% 75%,rgba(14,124,102,.12),rgba(14,124,102,0))}
+.edge-tab{position:fixed;right:0;top:50%;z-index:90;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);
+  background:var(--blue);color:#fff;font-size:13.5px;font-weight:600;letter-spacing:.04em;padding:18px 11px;border-radius:0 12px 12px 0;
+  box-shadow:-6px 0 18px rgba(11,87,183,.28);display:flex;align-items:center;gap:8px;transition:opacity .3s,padding .2s;animation:peek 3.2s ease-in-out 1.2s 3}
+.edge-tab span{display:inline-block;transform:rotate(180deg);font-size:16px}
+.edge-tab:hover{padding-bottom:16px;padding-top:22px}
+@keyframes peek{0%,70%,100%{transform:translateY(-50%) rotate(180deg) translateX(0)}80%{transform:translateY(-50%) rotate(180deg) translateX(6px)}90%{transform:translateY(-50%) rotate(180deg) translateX(0)}}
+.scrim{position:fixed;inset:0;z-index:95;background:rgba(15,23,42,.35);opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer{position:fixed;top:0;right:0;z-index:100;height:100vh;width:min(580px,100vw);background:#fff;border-radius:24px 0 0 24px;
+  box-shadow:-30px 0 70px rgba(15,23,42,.18);display:flex;flex-direction:column;transform:translateX(104%);transition:transform .5s cubic-bezier(.2,.8,.2,1);visibility:hidden}
+.dr-head{display:flex;align-items:center;justify-content:space-between;padding:20px 26px 16px;border-bottom:1px solid #E5EAF1}
+.dr-title{font-size:20px;font-weight:700;margin-top:2px}
+.dr-close{width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.dr-close:hover{background:#F1F4F8}
+.dr-body{flex:1;overflow-y:auto;padding:2px 28px 32px;overscroll-behavior:contain}
+.dr-foot{margin-top:36px;padding-top:16px;border-top:1px solid #E5EAF1;font-size:13px;color:var(--muted)}
+.cs.open .drawer{transform:none;visibility:visible}
+.cs.open .edge-tab{opacity:0;pointer-events:none}
+@media (min-width:1180px){
+  .cs.open .stage{padding-right:612px}
+  .cs.open .hero{position:absolute;visibility:hidden;opacity:0;pointer-events:none}
+}
+@media (max-width:1179px){ .cs.open .scrim{opacity:1;pointer-events:auto} }
+@media (min-width:901px) and (max-height:1000px){ .device{zoom:.9} }
+.inline-push{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:16px;background:#0E7C66;color:#fff;font-size:13px;font-weight:600;vertical-align:middle;margin:0 2px}
+.inline-push:hover{background:#0B6B55}
+@media (max-width:900px){
+  .stage{flex-direction:column;gap:36px;padding:8px 20px 24px}
+  .hero{flex-basis:auto;max-width:560px;text-align:left}
+  .topnav{padding:16px 20px}
+  .drawer{border-radius:0}
+}
 .cs-body > h2:first-of-type{margin-top:30px}
-.cs-lead2{font-size:15.5px;line-height:1.6;color:#374151;margin-top:16px}
-.cs-hint{font-size:12.5px;color:var(--muted);text-align:center;margin-bottom:14px}
+.cs-lead2{font-size:15.5px;line-height:1.6;color:#374151;margin-top:18px}
+.cs-hint{font-size:12.5px;color:var(--muted);margin-top:22px}
 .cs-eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
-.cs h1{font-size:36px;line-height:1.1;font-weight:700;margin:6px 0 8px;letter-spacing:-.01em}
-.cs-lead{font-size:15.5px;line-height:1.55;color:#374151;max-width:520px;margin:0 auto}
+.cs h1{font-size:46px;line-height:1.08;font-weight:700;margin:12px 0 16px;letter-spacing:-.02em}
+.cs-lead{font-size:16.5px;line-height:1.6;color:#374151;max-width:500px}
 .cs-tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
 .cs-tags span{font-size:12.5px;font-weight:500;padding:5px 12px;border-radius:20px;background:#fff;border:1px solid #D5DEEA;color:#374151}
 .cs-body h2{font-size:20px;font-weight:700;margin:44px 0 14px}
@@ -99,9 +138,9 @@ body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 .tc .nav2 .sp{flex:1}
 .tc-note{font-size:12px;color:var(--muted);margin-top:8px}
 @media (max-width:640px){.cs-uses,.cs-mocks{grid-template-columns:minmax(0,1fr)}.cs-arrow{display:none}}
-.cs-foot{margin-top:22px;font-size:13px;color:var(--muted);text-align:center}
+.cs-foot{padding:8px 24px 36px;font-size:13px;color:var(--muted);text-align:center}
 .cs a{color:var(--blue);font-weight:500}
-@media (max-width:600px){ .cs{padding:28px 14px 40px} .cs h1{font-size:30px} .cs-body{padding:4px 16px 22px} .cs-more summary{padding:16px} }
+@media (max-width:600px){ .cs h1{font-size:34px} .dr-body{padding:2px 18px 28px} .edge-tab{display:none} .navlink{padding:8px 10px;font-size:13.5px} .brand{font-size:16px} }
 @media (max-width:460px){ .device{zoom:.84} }
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 input{font-family:inherit}
@@ -344,16 +383,33 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 </head>
 <body>
 
-<main class="cs">
-  <header class="cs-top">
-    <div class="cs-eyebrow">UI mockup · Employee app module</div>
-    <h1>MiLearning.AI</h1>
-    <p class="cs-lead">An AI learning agent that brings relevant, free-first learning content to every employee. HR can push it too.</p>
-  </header>
+<div class="cs" id="site">
+  <nav class="topnav" aria-label="Site">
+    <div class="brand"><span class="logo-sm"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>MiLearning.AI</div>
+    <div class="navlinks">
+      <button class="navlink" data-act="drawer">Case study</button>
+      <a class="navlink" href="https://github.com/siddhantsingh2861/milearning-ai">GitHub ↗</a>
+    </div>
+  </nav>
 
-  <div class="cs-phone">
-    <button class="cs-pushbtn" data-act="hrPush"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Simulate an HR push</button>
-    <div class="cs-hint">Interactive. Click anything on the phone.</div>
+  <main class="stage">
+    <section class="hero">
+      <div class="cs-eyebrow">AI learning agent · Employee app module</div>
+      <h1>Personalised learning for every employee.</h1>
+      <p class="cs-lead">MiLearning.AI brings relevant, free-first courses, videos and articles to each employee, for any learning need. HR can push them centrally too.</p>
+      <div class="hero-cta">
+        <button class="cs-pushbtn" data-act="hrPush"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Simulate an HR push</button>
+        <button class="ghost" data-act="drawer">Read the case study <span aria-hidden="true">→</span></button>
+      </div>
+      <ul class="feats">
+        <li><span class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></span>Ask by text or voice, in English, Hindi or Hinglish</li>
+        <li><span class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span>HR pushes resources for needs in goal sheets, straight to Teams</li>
+        <li><span class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span>Free content first, from Coursera, YouTube, Microsoft Learn and the web</li>
+      </ul>
+      <div class="cs-hint">The phone is fully interactive. Click anything.</div>
+    </section>
+
+    <div class="cs-phone">
 <div class="device">
   <span class="hw l action"></span><span class="hw l volup"></span><span class="hw l voldn"></span><span class="hw r power"></span>
 <div class="phone">
@@ -421,14 +477,19 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
   </div>
 </div>
 </div><!-- /device -->
-  </div>
+    </div>
+  </main>
 
-  <details class="cs-more">
-    <summary>
-      <span><b>About this project</b><span class="sub2">The use case, how the HR push works, and the design decisions</span></span>
-      <svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="cs-body">
+  <footer class="cs-foot">Designed and built by Siddhant Singh · Single HTML file · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></footer>
+
+  <button class="edge-tab" data-act="drawer" aria-controls="drawer">Case study</button>
+  <div class="scrim" data-act="closeDrawer"></div>
+  <aside class="drawer" id="drawer" aria-label="Case study" aria-hidden="true">
+    <div class="dr-head">
+      <div><div class="cs-eyebrow">Case study</div><div class="dr-title">MiLearning.AI</div></div>
+      <button class="dr-close" data-act="closeDrawer" aria-label="Close case study"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="dr-body cs-body">
     <p class="cs-lead2">Personalised learning for every employee, without building more generic LMS content. MiLearning.AI finds relevant courses, videos and articles from the open web, free wherever possible, for any learning need an employee has.</p>
     <div class="cs-uses">
       <div class="cs-use"><div class="who">Employee-led</div><b>Ask for anything you want to learn</b><span>Type or speak a need in English, Hindi or Hinglish. Get relevant picks in seconds, right inside the employee app.</span></div>
@@ -438,7 +499,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 
     <h2>Try it</h2>
     <ol class="cs-try">
-      <li><span>Click <b>Simulate an HR push</b> above the phone. Tap the notification to see the resources HR assigned.</span></li>
+      <li><span>Click <button class="inline-push" data-act="hrPush">Simulate an HR push</button> then tap the notification on the phone to see the resources HR assigned.</span></li>
       <li><span>Tap a time chip like <b>Under 10 min</b> to filter today's picks by the time you have.</span></li>
       <li><span>Tap the <b>mic</b> next to the ask bar. It fills a Hinglish question. Hit send and pick a level.</span></li>
       <li><span>Start a new chat and tap <b>Continue: Team Management</b>. It skips the level question because HR already set it.</span></li>
@@ -500,11 +561,11 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 
     <h2>How it connects to the agent</h2>
     <p>The underlying agent runs in Microsoft Teams. It captures the learning need in chat, and a Power Automate flow posts the recommendations back as an Adaptive Card. This mockup explores the same experience as a native module inside the employee app.</p>
-    </div>
-  </details>
 
-  <div class="cs-foot">Designed and built by Siddhant Singh · Single HTML file · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></div>
-</main>
+      <div class="dr-foot">Designed and built by Siddhant Singh · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></div>
+    </div>
+  </aside>
+</div>
 
 
 <script>
@@ -919,10 +980,20 @@ function renderAll(keepScroll){
 }
 let pushT;
 function hidePush(){ $('push').classList.remove('show'); }
+function setDrawer(open){
+  $('site').classList.toggle('open',open);
+  $('drawer').setAttribute('aria-hidden',String(!open));
+  document.body.classList.toggle('lock',open&&innerWidth<1180);
+  if(open) setTimeout(()=>$('drawer').querySelector('.dr-close').focus({preventScroll:true}),350);
+  history.replaceState(null,'',open?'#case-study':location.pathname+location.search);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('site').classList.contains('open'))setDrawer(false);});
 const ACT={
+  drawer:()=>setDrawer(!$('site').classList.contains('open')),
+  closeDrawer:()=>setDrawer(false),
   tcTab:v=>{TCS.tab=v;TCS.i=0;renderTC();},
   tcPage:v=>{TCS.i+=+v;renderTC();},
-  hrPush:()=>{ clearTimeout(pushT); const p=$('push'); p.classList.remove('show'); void p.offsetWidth; p.classList.add('show'); pushT=setTimeout(hidePush,7000); },
+  hrPush:()=>{ if($('site').classList.contains('open')&&innerWidth<1180){ setDrawer(false); setTimeout(ACT.hrPush,450); return; } clearTimeout(pushT); const p=$('push'); p.classList.remove('show'); void p.offsetWidth; p.classList.add('show'); pushT=setTimeout(hidePush,7000); },
   openPush:()=>{ clearTimeout(pushT); hidePush(); S.lt='assigned'; go('learn'); },
   go:v=>go(v),
   backLearn:()=>go(S.prev==='learn'?'home':S.prev),
@@ -962,6 +1033,7 @@ $('appSearch').addEventListener('keydown',e=>{if(e.key==='Enter')toast('App sear
 function updateClock(){$('clock').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false});}
 updateClock(); setInterval(updateClock,1000);
 renderHome(); renderChat(); renderComposer(); renderTC();
+if(location.hash==='#case-study') setDrawer(true);
 </script>
 </body>
 </html>
