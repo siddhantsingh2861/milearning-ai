@@ -379,6 +379,45 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
 .push .b{font-size:12.5px;line-height:1.45;color:#374151}
 .toast{position:absolute;left:24px;right:24px;bottom:96px;z-index:50;background:#111827;color:#fff;font-size:12.5px;padding:11px 14px;border-radius:12px;text-align:center;pointer-events:none;opacity:0;transform:translateY(12px);transition:.25s}
 .toast.show{opacity:.96;transform:none}
+
+.mob-only{display:none}
+/* ---------- Phone visitors: their phone is the demo ---------- */
+@media (max-width:600px){
+  html,body{height:100%;overflow:hidden}
+  .mob-only{display:revert}
+  .topnav,.cs-foot,.feats,.cs-hint,.hero .ghost{display:none}
+  .stage{display:block;padding:0;max-width:none}
+  .cs-phone{padding:0}.cs-phone::before{display:none}
+  .device{zoom:1;padding:0;background:none;box-shadow:none;border-radius:0}
+  .device::after,.device .hw{display:none}
+  .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+  .status{display:none}
+  .screen{inset:0}
+  .hero{position:fixed;left:0;right:0;bottom:0;z-index:80;max-width:none;background:#fff;border-radius:26px 26px 0 0;
+    padding:10px 22px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -14px 44px rgba(15,23,42,.28);
+    transform:translateY(0);transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+  .handle{display:block;width:42px;height:5px;border-radius:3px;background:#D5DCE6;margin:0 auto 12px}
+  .sheet-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}
+  .sheet-brand .logo-sm{width:30px;height:30px;border-radius:9px}
+  .sheet-brand a{margin-left:auto;font-size:13px;font-weight:600;color:var(--blue);text-decoration:none}
+  .demo-note{display:flex;align-items:center;gap:8px;margin:12px 0 14px;padding:9px 12px;border-radius:12px;background:#E3F5EC;color:#0B6B45;font-size:13px;font-weight:600}
+  .hero .cs-eyebrow{font-size:11px}
+  .cs h1{font-size:27px;margin:6px 0 8px}
+  .cs-lead{font-size:14.5px;line-height:1.55}
+  .hero-cta{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .try-btn{grid-column:1/-1;height:50px;border-radius:25px;background:var(--blue);color:#fff;font-size:15px;font-weight:600;
+    box-shadow:0 6px 16px rgba(11,87,183,.3);display:flex !important;align-items:center;justify-content:center;gap:8px}
+  .hero-cta{grid-template-columns:1.25fr 1fr}
+  .hero-cta .cs-pushbtn{justify-content:center;font-size:13px;padding:0 10px;white-space:nowrap}
+  .hero-cta .cs-pushbtn svg{display:none}
+  .hero-cta .readcs{display:flex}
+  body.app-mode .hero{transform:translateY(110%);opacity:0}
+  .about-pill{position:fixed;right:12px;bottom:calc(86px + env(safe-area-inset-bottom));z-index:70;display:flex !important;align-items:center;gap:6px;
+    height:38px;padding:0 14px;border-radius:19px;background:rgba(17,24,39,.86);color:#fff;font-size:12.5px;font-weight:600;
+    box-shadow:0 6px 18px rgba(15,23,42,.3);opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s .2s,transform .3s .2s}
+  body.app-mode .about-pill{opacity:1;transform:none;pointer-events:auto}
+  .push{top:calc(8px + env(safe-area-inset-top))}
+}
 </style>
 </head>
 <body>
@@ -393,13 +432,20 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
   </nav>
 
   <main class="stage">
-    <section class="hero">
+    <section class="hero" id="hero">
+      <div class="sheet-top mob-only"><span class="handle" aria-hidden="true"></span>
+        <div class="sheet-brand"><span class="logo-sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>MiLearning.AI
+          <a href="https://github.com/siddhantsingh2861/milearning-ai">GitHub ↗</a></div>
+        <div class="demo-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E7C66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Your phone is the demo. The app above is live.</div>
+      </div>
       <div class="cs-eyebrow">AI learning agent · Employee app module</div>
       <h1>Personalised learning for every employee.</h1>
       <p class="cs-lead">MiLearning.AI brings relevant, free-first courses, videos and articles available on the open web to each employee, for any learning need. HR can push them centrally too.</p>
       <div class="hero-cta">
+        <button class="try-btn mob-only" data-act="tryApp">Try the app <span aria-hidden="true">↑</span></button>
         <button class="cs-pushbtn" data-act="hrPush"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Simulate an HR push</button>
         <button class="ghost" data-act="drawer">Read the case study <span aria-hidden="true">→</span></button>
+        <button class="ghost readcs mob-only" data-act="drawer">Case study <span aria-hidden="true">→</span></button>
       </div>
       <ul class="feats">
         <li><span class="fi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B57B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3"/></svg></span>Ask by text or voice, in English, Hindi or Hinglish</li>
@@ -483,6 +529,7 @@ h2.section{font-size:20px;font-weight:700;margin:22px 2px 12px}
   <footer class="cs-foot">Designed and built by Siddhant Singh · Single HTML file · <a href="https://github.com/siddhantsingh2861/milearning-ai">Source on GitHub</a></footer>
 
   <button class="edge-tab" data-act="drawer" aria-controls="drawer">Case study</button>
+  <button class="about-pill mob-only" data-act="aboutPill" aria-label="About this project"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>About</button>
   <div class="scrim" data-act="closeDrawer"></div>
   <aside class="drawer" id="drawer" aria-label="Case study" aria-hidden="true">
     <div class="dr-head">
@@ -988,12 +1035,24 @@ function setDrawer(open){
   history.replaceState(null,'',open?'#case-study':location.pathname+location.search);
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('site').classList.contains('open'))setDrawer(false);});
+const MOB=matchMedia('(max-width:600px)');
+function enterApp(){document.body.classList.add('app-mode');}
+function leaveApp(){document.body.classList.remove('app-mode');}
+/* On phones, the first tap on the live app (while the intro sheet is up) just reveals the app */
+document.addEventListener('click',e=>{
+  if(MOB.matches&&!document.body.classList.contains('app-mode')&&e.target.closest('.phone')&&!e.target.closest('#hero')){
+    e.stopPropagation();e.preventDefault();enterApp();
+  }
+},true);
 const ACT={
+  tryApp:()=>enterApp(),
+  aboutPill:()=>leaveApp(),
   drawer:()=>setDrawer(!$('site').classList.contains('open')),
   closeDrawer:()=>setDrawer(false),
   tcTab:v=>{TCS.tab=v;TCS.i=0;renderTC();},
   tcPage:v=>{TCS.i+=+v;renderTC();},
-  hrPush:()=>{ if($('site').classList.contains('open')&&innerWidth<1180){ setDrawer(false); setTimeout(ACT.hrPush,450); return; } clearTimeout(pushT); const p=$('push'); p.classList.remove('show'); void p.offsetWidth; p.classList.add('show'); pushT=setTimeout(hidePush,7000); },
+  hrPush:()=>{ if($('site').classList.contains('open')&&innerWidth<1180){ setDrawer(false); setTimeout(ACT.hrPush,450); return; }
+    if(MOB.matches&&!document.body.classList.contains('app-mode')){ enterApp(); setTimeout(ACT.hrPush,450); return; } clearTimeout(pushT); const p=$('push'); p.classList.remove('show'); void p.offsetWidth; p.classList.add('show'); pushT=setTimeout(hidePush,7000); },
   openPush:()=>{ clearTimeout(pushT); hidePush(); S.lt='assigned'; go('learn'); },
   go:v=>go(v),
   backLearn:()=>go(S.prev==='learn'?'home':S.prev),
